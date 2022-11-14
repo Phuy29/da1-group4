@@ -1,9 +1,9 @@
 <?php
 
-function show_notfound($isAdminSite = false)
+function show_notfound()
 {
     $data = [
         'page_title' => 'File not found',
     ];
-    render('404', $data, $isAdminSite);
+    render('404', $data);
 }

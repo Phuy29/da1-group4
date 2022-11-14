@@ -15,12 +15,3 @@ function about() {
     ];
     render('about', $data);
 }
-
-// Hàm hiển thị ra trang dashboard của admin
-function show_dashboard()
-{
-    $data = [
-        'page_title' => 'Trang quản trị',
-    ];
-    render('admin.dashboard', $data, true);
-}

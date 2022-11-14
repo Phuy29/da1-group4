@@ -5,7 +5,7 @@ session_start();
 require_once 'config/config.php';
 
 // include library helper & session
-require_once 'lib/helper.php';
+require_once 'libs/helper.php';
 
 // include model files
 require_once 'models/connection.php';
