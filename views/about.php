@@ -1,5 +1,5 @@
 <!-- breadcrumb-area -->
-<?php require 'views/layouts/client/partials/banner.php'; ?>
+<?php require 'views/layout/client/partials/banner.php'; ?>
 <!-- breadcrumb-area-end -->
 <!-- about-area -->
 <section class="about-area about-p pt-120 pb-120 p-relative fix">
