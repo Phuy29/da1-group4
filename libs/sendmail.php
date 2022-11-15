@@ -18,7 +18,7 @@ function sendmail($data = [])
         $mail->Host = 'smtp.gmail.com';                     //Set the SMTP server to send through
         $mail->SMTPAuth = true;                                   //Enable SMTP authentication
         $mail->Username = _GOOGLE_ACCOUNT;                     //SMTP username
-        $mail->Password = _GOOLE_APP_PASS;                               //SMTP password
+        $mail->Password = _GOOGLE_APP_PASS;                               //SMTP password
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
         $mail->Port = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
