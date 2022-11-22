@@ -6,6 +6,7 @@ require_once 'config/config.php';
 
 // include library helper & session
 require_once 'libs/helper.php';
+require_once 'libs/session.php';
 
 // include model files
 require_once 'models/connection.php';

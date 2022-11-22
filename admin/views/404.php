@@ -1,9 +1,16 @@
-<div class="text-center my-5">
-    <h1 style="font-family: Georgia, serif; color: #4a4a4a; margin-top: 2em; line-height: 1.5;">
-        Sorry, this page doesn't exist.<br>Please check the URL or go back a page.
-    </h1>
+<div id="error">
 
-    <h2 style="  font-family: Verdana, sans-serif; color: #7d7d7d; font-weight: 300;">
-        404 Error. Page Not Found.
-    </h2>
+
+    <div class="error-page container">
+        <div class="col-md-8 col-12 offset-md-2">
+            <div class="text-center">
+                <img class="img-error" src="../public/admin/dist/assets/images/samples/error-404.svg" alt="Not Found">
+                <h1 class="error-title">NOT FOUND</h1>
+                <p class='fs-5 text-gray-600'>The page you are looking not found.</p>
+                <a href="index.html" class="btn btn-lg btn-outline-primary mt-3">Go Home</a>
+            </div>
+        </div>
+    </div>
+
+
 </div>

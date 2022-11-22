@@ -1,53 +1,27 @@
-<div class="wrapper">
+<?php require_once 'views/layout/partials/sidebar.php'; ?>
+<div id="main">
+    <header class="mb-3">
+        <a href="#" class="burger-btn d-block d-xl-none">
+            <i class="bi bi-justify fs-3"></i>
+        </a>
+    </header>
 
-    <!-- Preloader -->
-    <div class="preloader flex-column justify-content-center align-items-center">
-        <img class="animation__shake" src="../public/admin/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60"
-             width="60">
+    <div class="page-heading">
+        <h3><?= $page_title ?? 'Dashboard' ?></h3>
     </div>
-
-    <?php require_once 'views/layout/partials/nav.php'; ?>
-
-    <?php require_once 'views/layout/partials/sidebar.php'; ?>
-
-
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <div class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1 class="m-0"><?= $page_title ?? 'Dashboard' ?></h1>
-                    </div><!-- /.col -->
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active"><?= $page_title ?? 'Dashboard' ?></li>
-                        </ol>
-                    </div><!-- /.col -->
-                </div><!-- /.row -->
-            </div><!-- /.container-fluid -->
-        </div>
-        <!-- /.content-header -->
-
+    <div class="page-content">
         <?= @$content; ?>
-
     </div>
-    <!-- /.content-wrapper -->
-    <footer class="main-footer">
-        <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
-        All rights reserved.
-        <div class="float-right d-none d-sm-inline-block">
-            <b>Version</b> 3.2.0
+
+    <footer>
+        <div class="footer clearfix mb-0 text-muted">
+            <div class="float-start">
+                <p>2021 &copy; Mazer</p>
+            </div>
+            <div class="float-end">
+                <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a
+                            href="https://saugi.me">Saugi</a></p>
+            </div>
         </div>
     </footer>
-
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-        <!-- Control sidebar content goes here -->
-    </aside>
-    <!-- /.control-sidebar -->
 </div>
-<!-- ./wrapper -->
-
