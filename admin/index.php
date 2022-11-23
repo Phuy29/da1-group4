@@ -23,6 +23,7 @@ require_once '../models/connection.php';
 require_once '../controllers/base_controller.php';
 require_once '../controllers/notfound_controller.php';
 require_once 'controllers/dashboard_controller.php';
+require_once 'controllers/manage_rooms_controller.php';
 
 // include routes
 require_once('routes.php');
