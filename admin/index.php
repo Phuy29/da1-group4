@@ -24,6 +24,7 @@ require_once 'models/dich_vu_phong.php';
 require_once '../controllers/base_controller.php';
 require_once '../controllers/notfound_controller.php';
 require_once 'controllers/dashboard_controller.php';
+require_once 'controllers/manage_rooms_controller.php';
 require_once 'controllers/dich_vu_phong_controller.php';
 
 // include routes

@@ -3,8 +3,7 @@
         <div class="sidebar-header position-relative">
             <div class="d-flex justify-content-between align-items-center">
                 <div class="logo">
-                    <a href="/admin"><img src="../public/admin/dist/assets/images/logo/logo.svg" alt="Logo"
-                                              srcset=""></a>
+                    <a href="index.html"><img src="../public/admin/dist/assets/images/logo/logo.svg" alt="Logo" srcset=""></a>
                 </div>
                 <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -41,25 +40,72 @@
             <ul class="menu">
                 <li class="sidebar-title">Menu</li>
 
-                <li class="sidebar-item active">
-                    <a href="<?= '/admin' ?>" class='sidebar-link'>
+                <li
+                        class="sidebar-item active ">
+                    <a href="index.html" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
 
-                <li class="sidebar-item">
-                    <a href="?ctr=loai_phong" class='sidebar-link'>
+                <li class="sidebar-title">Room &amp; Service</li>
+
+                <li
+                        class="sidebar-item">
+                    <a href="#" class='sidebar-link'>
                         <i class="bi bi-stack"></i>
                         <span>Quản lý loại phòng</span>
                     </a>
+                    
                 </li>
-                <li class="sidebar-item">
-                    <a href="?ctr=dich_vu_phong" class='sidebar-link'>
-                        <i class="bi bi-stack"></i>
+
+                <li
+                        class="sidebar-item">
+                    <a href="#" class='sidebar-link'>
+                        <i class="bi bi-collection-fill"></i>
                         <span>Quản lý dịch vụ phòng</span>
                     </a>
                 </li>
+
+                <li
+                        class="sidebar-item">
+                    <a href="#" class='sidebar-link'>
+                        <i class="bi bi-grid-1x2-fill"></i>
+                        <span>Quản lý đơn đặt phòng</span>
+                    </a>
+                    
+                </li>
+
+                <li class="sidebar-title">Marketing &amp; sales</li>
+
+                <li
+                        class="sidebar-item">
+                    <a href="#" class='sidebar-link'>
+                        <i class="bi bi-hexagon-fill"></i>
+                        <span>Quản lý chiến dịch</span>
+                    </a>
+                    
+                </li>
+
+                <li
+                        class="sidebar-item">
+                    <a href="form-layout.html" class='sidebar-link'>
+                        <i class="bi bi-file-earmark-medical-fill"></i>
+                        <span>Quản lý voucher</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-title">Users</li>
+
+                <li
+                        class="sidebar-item">
+                    <a href="#" class='sidebar-link'>
+                        <i class="bi bi-journal-check"></i>
+                        <span>Quản lý người dùng</span>
+                    </a>
+                    
+                </li>
+
             </ul>
         </div>
     </div>
