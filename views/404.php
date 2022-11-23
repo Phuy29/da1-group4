@@ -1,5 +1,5 @@
 <!-- breadcrumb-area -->
-<?php require 'views/layout/client/partials/banner.php'; ?>
+<?php require 'views/layout/partials/banner.php'; ?>
 <!-- breadcrumb-area-end -->
 <div class="text-center my-5">
     <h1 style="font-family: Georgia, serif; color: #4a4a4a; margin-top: 2em; line-height: 1.5;">

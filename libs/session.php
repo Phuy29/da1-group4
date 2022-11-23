@@ -1,7 +1,7 @@
 <?php
 
 // Gán session (SET)
-function session_set($key, $val)
+function session_set($key, $val): void
 {
     $_SESSION[$key] = $val;
 }
@@ -9,11 +9,11 @@ function session_set($key, $val)
 // Lấy session (GET)
 function session_get($key)
 {
-    return (isset($_SESSION[$key])) ? $_SESSION[$key] : false;
+    return $_SESSION[$key] ?? false;
 }
 
 // Xóa session (DELETE)
-function session_delete($key)
+function session_delete($key): void
 {
     if (isset($_SESSION[$key])) {
         unset($_SESSION[$key]);
