@@ -10,3 +10,8 @@ function connect()
         echo 'Error when connect: ' . $e->getMessage();
     }
 }
+
+function close_connect(&$connect)
+{
+    $connect = null;
+}

@@ -18,6 +18,33 @@ switch ($ctr) {
                 break;
         }
         break;
+    case 'loai_phong':
+        switch ($act) {
+            case 'index':
+                $method = $ctr . '_' . $act;
+                $method();
+                break;
+            default:
+                show_notfound(true);
+                break;
+        }
+        break;
+    case 'dich_vu_phong':
+        switch ($act) {
+            case 'index':
+            case 'create':
+            case 'store':
+            case 'edit':
+            case 'update':
+            case 'delete':
+                $method = $ctr . '_' . $act;
+                $method();
+                break;
+            default:
+                show_notfound(true);
+                break;
+        }
+        break;
     default:
         show_notfound(true);
         break;

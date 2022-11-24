@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: localhost:3306
--- Thời gian đã tạo: Th10 15, 2022 lúc 03:12 AM
--- Phiên bản máy phục vụ: 5.7.33
--- Phiên bản PHP: 8.1.9
+-- Host: localhost:3306
+-- Generation Time: Nov 23, 2022 at 04:56 PM
+-- Server version: 5.7.33
+-- PHP Version: 8.1.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,34 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `quan_ly_khach_san_du_an_1`
+-- Database: `quan_ly_khach_san_du_an_1`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `booking`
+-- Table structure for table `bed_types`
+--
+
+CREATE TABLE `bed_types` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `bed_types`
+--
+
+INSERT INTO `bed_types` (`id`, `name`) VALUES
+(1, 'Giường đơn'),
+(2, 'Giường cỡ lớn'),
+(3, 'Giường cỡ đại'),
+(4, 'Giường có bánh xe');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `booking`
 --
 
 CREATE TABLE `booking` (
@@ -45,7 +66,7 @@ CREATE TABLE `booking` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `booking_detail`
+-- Table structure for table `booking_detail`
 --
 
 CREATE TABLE `booking_detail` (
@@ -58,7 +79,7 @@ CREATE TABLE `booking_detail` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `campaigns`
+-- Table structure for table `campaigns`
 --
 
 CREATE TABLE `campaigns` (
@@ -71,7 +92,7 @@ CREATE TABLE `campaigns` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `menu`
+-- Table structure for table `menu`
 --
 
 CREATE TABLE `menu` (
@@ -84,7 +105,7 @@ CREATE TABLE `menu` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `room_galleries`
+-- Table structure for table `room_galleries`
 --
 
 CREATE TABLE `room_galleries` (
@@ -96,25 +117,38 @@ CREATE TABLE `room_galleries` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `room_services`
+-- Table structure for table `room_services`
 --
 
 CREATE TABLE `room_services` (
   `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `icon` varchar(255) NOT NULL
+  `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `room_services`
+--
+
+INSERT INTO `room_services` (`id`, `name`) VALUES
+(1, 'TV'),
+(2, 'Free Wifi'),
+(3, 'Máy lạnh'),
+(4, 'Máy sưởi'),
+(5, 'Giặt là');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `room_types`
+-- Table structure for table `room_types`
 --
 
 CREATE TABLE `room_types` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `image` varchar(255) NOT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `adults` int(11) NOT NULL,
+  `size` int(11) NOT NULL,
+  `bed_type_id` int(11) NOT NULL,
   `description` varchar(255) NOT NULL,
   `price` double(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -122,7 +156,7 @@ CREATE TABLE `room_types` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `service_room_type`
+-- Table structure for table `service_room_type`
 --
 
 CREATE TABLE `service_room_type` (
@@ -134,7 +168,7 @@ CREATE TABLE `service_room_type` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `settings`
+-- Table structure for table `settings`
 --
 
 CREATE TABLE `settings` (
@@ -153,7 +187,7 @@ CREATE TABLE `settings` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -167,7 +201,7 @@ CREATE TABLE `users` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `vouchers`
+-- Table structure for table `vouchers`
 --
 
 CREATE TABLE `vouchers` (
@@ -179,17 +213,23 @@ CREATE TABLE `vouchers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `booking`
+-- Indexes for table `bed_types`
+--
+ALTER TABLE `bed_types`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `booking`
 --
 ALTER TABLE `booking`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `booking_detail`
+-- Indexes for table `booking_detail`
 --
 ALTER TABLE `booking_detail`
   ADD PRIMARY KEY (`id`),
@@ -197,38 +237,38 @@ ALTER TABLE `booking_detail`
   ADD KEY `room_type_id` (`room_type_id`);
 
 --
--- Chỉ mục cho bảng `campaigns`
+-- Indexes for table `campaigns`
 --
 ALTER TABLE `campaigns`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `menu`
+-- Indexes for table `menu`
 --
 ALTER TABLE `menu`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `room_galleries`
+-- Indexes for table `room_galleries`
 --
 ALTER TABLE `room_galleries`
   ADD PRIMARY KEY (`id`),
   ADD KEY `room_type_id` (`room_type_id`);
 
 --
--- Chỉ mục cho bảng `room_services`
+-- Indexes for table `room_services`
 --
 ALTER TABLE `room_services`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `room_types`
+-- Indexes for table `room_types`
 --
 ALTER TABLE `room_types`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `service_room_type`
+-- Indexes for table `service_room_type`
 --
 ALTER TABLE `service_room_type`
   ADD PRIMARY KEY (`id`),
@@ -236,120 +276,126 @@ ALTER TABLE `service_room_type`
   ADD KEY `room_type_id` (`room_type_id`);
 
 --
--- Chỉ mục cho bảng `settings`
+-- Indexes for table `settings`
 --
 ALTER TABLE `settings`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `vouchers`
+-- Indexes for table `vouchers`
 --
 ALTER TABLE `vouchers`
   ADD PRIMARY KEY (`id`),
   ADD KEY `campaign_id` (`campaign_id`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `booking`
+-- AUTO_INCREMENT for table `bed_types`
+--
+ALTER TABLE `bed_types`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `booking_detail`
+-- AUTO_INCREMENT for table `booking_detail`
 --
 ALTER TABLE `booking_detail`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `campaigns`
+-- AUTO_INCREMENT for table `campaigns`
 --
 ALTER TABLE `campaigns`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `menu`
+-- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `room_galleries`
+-- AUTO_INCREMENT for table `room_galleries`
 --
 ALTER TABLE `room_galleries`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `room_services`
+-- AUTO_INCREMENT for table `room_services`
 --
 ALTER TABLE `room_services`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT cho bảng `room_types`
+-- AUTO_INCREMENT for table `room_types`
 --
 ALTER TABLE `room_types`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `service_room_type`
+-- AUTO_INCREMENT for table `service_room_type`
 --
 ALTER TABLE `service_room_type`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `settings`
+-- AUTO_INCREMENT for table `settings`
 --
 ALTER TABLE `settings`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `vouchers`
+-- AUTO_INCREMENT for table `vouchers`
 --
 ALTER TABLE `vouchers`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Các ràng buộc cho các bảng đã đổ
+-- Constraints for dumped tables
 --
 
 --
--- Các ràng buộc cho bảng `booking_detail`
+-- Constraints for table `booking_detail`
 --
 ALTER TABLE `booking_detail`
   ADD CONSTRAINT `booking_detail_ibfk_1` FOREIGN KEY (`booking_id`) REFERENCES `booking` (`id`),
   ADD CONSTRAINT `booking_detail_ibfk_2` FOREIGN KEY (`room_type_id`) REFERENCES `room_types` (`id`);
 
 --
--- Các ràng buộc cho bảng `room_galleries`
+-- Constraints for table `room_galleries`
 --
 ALTER TABLE `room_galleries`
   ADD CONSTRAINT `room_galleries_ibfk_1` FOREIGN KEY (`room_type_id`) REFERENCES `room_types` (`id`);
 
 --
--- Các ràng buộc cho bảng `service_room_type`
+-- Constraints for table `service_room_type`
 --
 ALTER TABLE `service_room_type`
   ADD CONSTRAINT `service_room_type_ibfk_1` FOREIGN KEY (`room_service_id`) REFERENCES `room_services` (`id`),
   ADD CONSTRAINT `service_room_type_ibfk_2` FOREIGN KEY (`room_type_id`) REFERENCES `room_types` (`id`);
 
 --
--- Các ràng buộc cho bảng `vouchers`
+-- Constraints for table `vouchers`
 --
 ALTER TABLE `vouchers`
   ADD CONSTRAINT `vouchers_ibfk_1` FOREIGN KEY (`campaign_id`) REFERENCES `campaigns` (`id`);
