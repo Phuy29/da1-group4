@@ -10,6 +10,9 @@ switch ($ctr) {
             case 'index':
                 show_dashboard();
                 break;
+            case 'rooms':
+                show_manage_rooms(); 
+                break;
             default:
                 show_notfound(true);
                 break;
