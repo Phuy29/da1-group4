@@ -3,7 +3,7 @@
         <div class="sidebar-header position-relative">
             <div class="d-flex justify-content-between align-items-center">
                 <div class="logo">
-                    <a href="index.html"><img src="../public/admin/dist/assets/images/logo/logo.svg" alt="Logo" srcset=""></a>
+                    <a href="/admin"><img src="../public/admin/dist/assets/images/logo/logo.svg" alt="Logo" srcset=""></a>
                 </div>
                 <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -42,7 +42,7 @@
 
                 <li
                         class="sidebar-item active ">
-                    <a href="index.html" class='sidebar-link'>
+                    <a href="?ctr=home" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Dashboard</span>
                     </a>
@@ -52,7 +52,7 @@
 
                 <li
                         class="sidebar-item">
-                    <a href="#" class='sidebar-link'>
+                    <a href="?ctr=loai_phong" class='sidebar-link'>
                         <i class="bi bi-stack"></i>
                         <span>Quản lý loại phòng</span>
                     </a>
@@ -61,7 +61,7 @@
 
                 <li
                         class="sidebar-item">
-                    <a href="#" class='sidebar-link'>
+                    <a href="?ctr=dich_vu_phong" class='sidebar-link'>
                         <i class="bi bi-collection-fill"></i>
                         <span>Quản lý dịch vụ phòng</span>
                     </a>
