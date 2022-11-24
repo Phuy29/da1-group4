@@ -52,7 +52,7 @@
 
                 <li
                         class="sidebar-item">
-                    <a href="#" class='sidebar-link'>
+                    <a href="?ctr=loai_phong" class='sidebar-link'>
                         <i class="bi bi-stack"></i>
                         <span>Quản lý loại phòng</span>
                     </a>
