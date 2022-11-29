@@ -1,1 +1,3 @@
-let jquery_datatable = $("#table1").DataTable();
+let jquery_datatable = $("#table1").DataTable({
+    responsive: true,
+});
