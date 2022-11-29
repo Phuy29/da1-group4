@@ -105,7 +105,6 @@
 <!-- footer-end -->
 <!-- JS here -->
 <script src="public/js/vendor/modernizr-3.5.0.min.js"></script>
-<script src="public/js/vendor/jquery-3.6.0.min.js"></script>
 <script src="public/js/popper.min.js"></script>
 <script src="public/js/bootstrap.min.js"></script>
 <script src="public/js/slick.min.js"></script>

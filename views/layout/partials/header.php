@@ -11,6 +11,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="public/img/favicon.ico">
     <!-- Place favicon.ico in the root directory -->
 
+    <link rel="stylesheet" href="public/admin/dist/assets/css/main/app.css">
     <!-- CSS here -->
     <link rel="stylesheet" href="public/css/bootstrap.min.css">
     <link rel="stylesheet" href="public/css/animate.min.css">
@@ -22,6 +23,16 @@
     <link rel="stylesheet" href="public/css/default.css">
     <link rel="stylesheet" href="public/css/style.css">
     <link rel="stylesheet" href="public/css/responsive.css">
+    <link rel="stylesheet" href="public/admin/dist/assets/css/pages/auth.css">
+
+    <script src="public/js/vendor/jquery-3.6.0.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/additional-methods.min.js"></script>
+    <style>
+        label.error {
+            color: rgb(220 53 69) !important;
+        }
+    </style>
 </head>
 <body>
 <!-- header -->
@@ -84,15 +95,15 @@
                                     <li class="has-sub">
                                         <a href="../../room.html">our rooms</a>
                                         <ul>
-                                            <li> <a href="../../room.html">Our Rooms</a></li>
-                                            <li> <a href="../../single-rooms.html">Rooms Details</a></li>
+                                            <li><a href="../../room.html">Our Rooms</a></li>
+                                            <li><a href="../../single-rooms.html">Rooms Details</a></li>
                                         </ul>
                                     </li>
                                     <li class="has-sub">
                                         <a href="../../services.html">Facilities</a>
                                         <ul>
-                                            <li> <a href="../../services.html">Services</a></li>
-                                            <li> <a href="../../single-service.html">Services Details</a></li>
+                                            <li><a href="../../services.html">Services</a></li>
+                                            <li><a href="../../single-service.html">Services Details</a></li>
                                         </ul>
                                     </li>
                                     <li class="has-sub"><a href="#">Pages</a>

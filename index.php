@@ -15,6 +15,7 @@ require_once 'models/connection.php';
 require_once 'controllers/base_controller.php';
 require_once 'controllers/notfound_controller.php';
 require_once 'controllers/home_controller.php';
+require_once 'controllers/auth_controller.php';
 
 // include file route
 require_once('routes.php');
