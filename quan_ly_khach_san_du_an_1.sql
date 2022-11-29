@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 23, 2022 at 04:56 PM
+-- Generation Time: Nov 29, 2022 at 07:32 AM
 -- Server version: 5.7.33
 -- PHP Version: 8.1.13
 
@@ -114,6 +114,16 @@ CREATE TABLE `room_galleries` (
   `room_type_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `room_galleries`
+--
+
+INSERT INTO `room_galleries` (`id`, `image`, `room_type_id`) VALUES
+(8, 'public/uploads/loai-phong/phong-doi/0.png', 5),
+(9, 'public/uploads/loai-phong/phong-doi/1.png', 5),
+(10, 'public/uploads/loai-phong/phong-doi/2.jpg', 5),
+(11, 'public/uploads/loai-phong/phong-doi/3.png', 5);
+
 -- --------------------------------------------------------
 
 --
@@ -134,7 +144,8 @@ INSERT INTO `room_services` (`id`, `name`) VALUES
 (2, 'Free Wifi'),
 (3, 'Máy lạnh'),
 (4, 'Máy sưởi'),
-(5, 'Giặt là');
+(7, 'Giặt là'),
+(8, 'Điện thoại bàn');
 
 -- --------------------------------------------------------
 
@@ -147,11 +158,18 @@ CREATE TABLE `room_types` (
   `name` varchar(255) NOT NULL,
   `image` varchar(255) DEFAULT NULL,
   `adults` int(11) NOT NULL,
-  `size` int(11) NOT NULL,
+  `size` double(10,2) NOT NULL,
   `bed_type_id` int(11) NOT NULL,
   `description` varchar(255) NOT NULL,
   `price` double(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `room_types`
+--
+
+INSERT INTO `room_types` (`id`, `name`, `image`, `adults`, `size`, `bed_type_id`, `description`, `price`) VALUES
+(5, 'Phòng đôi', NULL, 2, 25.30, 3, 'Phòng đôi', 32.00);
 
 -- --------------------------------------------------------
 
@@ -164,6 +182,16 @@ CREATE TABLE `service_room_type` (
   `room_service_id` int(11) NOT NULL,
   `room_type_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `service_room_type`
+--
+
+INSERT INTO `service_room_type` (`id`, `room_service_id`, `room_type_id`) VALUES
+(16, 1, 5),
+(17, 2, 5),
+(18, 3, 5),
+(19, 4, 5);
 
 -- --------------------------------------------------------
 
@@ -332,25 +360,25 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT for table `room_galleries`
 --
 ALTER TABLE `room_galleries`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `room_services`
 --
 ALTER TABLE `room_services`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `room_types`
 --
 ALTER TABLE `room_types`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `service_room_type`
 --
 ALTER TABLE `service_room_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `settings`
