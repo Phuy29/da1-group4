@@ -23,7 +23,6 @@ function sendmail($data = [])
         $mail->Port = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
         $mail->CharSet = "UTF-8";
-        $mail->setLanguage('vi', '../public/PHPMailer/language/');
 
         //Recipients
         $mail->setFrom(_GOOGLE_ACCOUNT, 'ZCube');
