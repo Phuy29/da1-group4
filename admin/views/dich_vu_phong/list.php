@@ -6,8 +6,8 @@ if (!empty(session_get('status'))) {
 ?>
 
 <section class="section">
-    <div class="card">
-        <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+    <div class="">
+        <div class="card-header d-flex flex-wrap justify-content-between align-items-center">
             <div>Dịch vụ phòng</div>
             <a href="?ctr=<?= $ctr ?? 'home' ?>&act=create" class="btn btn-primary my-3">Thêm dịch vụ phòng</a>
         </div>

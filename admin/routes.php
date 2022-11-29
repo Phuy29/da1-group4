@@ -18,6 +18,11 @@ switch ($ctr) {
     case 'loai_phong':
         switch ($act) {
             case 'index':
+            case 'create':
+            case 'store':
+            case 'edit':
+            case 'update':
+            case 'delete':
                 $method = $ctr . '_' . $act;
                 $method();
                 break;

@@ -18,6 +18,15 @@ switch ($ctr) {
                 break;
         }
         break;
+    case 'auth':
+        switch ($act) {
+            case 'signup':
+                signUp();
+                break;
+            default:
+                show_notfound();
+                break;
+        }
     default:
         show_notfound();
         break;
