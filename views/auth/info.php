@@ -1,9 +1,11 @@
 <?php
-//var_dump(cookie_get('verifyCode'));
-//die();
 if (!empty(session_get('errors'))) {
     $errors = session_get('errors');
     session_delete('errors');
+}
+if (!empty(session_get('status'))) {
+    $status = session_get('status');
+    session_delete('status');
 }
 if (!empty(session_get('data'))) {
     $data = session_get('data');
@@ -17,26 +19,34 @@ if (!empty(session_get('data'))) {
     <div class="row">
         <div class="col-12 py-5">
             <div id="auth-left" class="d-flex flex-column align-items-center p-0">
-                <h1 class="auth-title">Đăng ký</h1>
-                <p class="auth-subtitle mb-5">Đăng ký tài khoản để nhận những ưu đãi đặc biệt của ZCube.</p>
+                <h1 class="auth-title">Thông tin tài khoản</h1>
 
-                <form action="?ctr=<?= $ctr ?? 'home' ?>&act=regist" id="form" method="post" class="w-50">
+                <form action="?ctr=<?= $ctr ?? 'home' ?>&act=update" id="form" method="post" class="w-50">
+                    <input type="hidden" name="id" value="<?= $user['id'] ?>">
                     <div class="form-group position-relative has-icon-left mb-3">
                         <input
                                 type="text"
                                 class="form-control form-control-xl"
                                 placeholder="Email"
                                 name="email"
-                                value="<?= $data['email'] ?? '' ?>"
+                                value="<?= $user['email'] ?? '' ?>"
+                                disabled
+                                readonly
                         >
                         <div class="form-control-icon">
                             <i class="bi bi-envelope"></i>
                         </div>
-                        <?php if (!empty($errors['email'])): ?>
-                            <div class="error text-danger">
-                                <span><?= $errors['email'][0] ?></span>
-                            </div>
-                        <?php endif; ?>
+                    </div>
+                    <div class="form-group position-relative mb-3">
+                        <input
+                                type="text"
+                                class="form-control form-control-xl"
+                                placeholder="Email"
+                                name="email"
+                                value="Vai trò: <?= get_role($user['role']) ?>"
+                                disabled
+                                readonly
+                        >
                     </div>
                     <div class="form-group position-relative has-icon-left mb-3">
                         <input
@@ -44,7 +54,7 @@ if (!empty(session_get('data'))) {
                                 class="form-control form-control-xl"
                                 placeholder="Họ và tên"
                                 name="fullname"
-                                value="<?= $data['fullname'] ?? '' ?>"
+                                value="<?= $user['fullname'] ?? '' ?>"
                         >
                         <div class="form-control-icon">
                             <i class="bi bi-person"></i>
@@ -57,46 +67,11 @@ if (!empty(session_get('data'))) {
                     </div>
                     <div class="form-group position-relative has-icon-left mb-3">
                         <input
-                                type="password"
-                                class="form-control form-control-xl"
-                                id="password"
-                                placeholder="Mật khẩu"
-                                name="password"
-                                value="<?= $data['password'] ?? '' ?>"
-                        >
-                        <div class="form-control-icon">
-                            <i class="bi bi-shield-lock"></i>
-                        </div>
-                        <?php if (!empty($errors['password'])): ?>
-                            <div class="error text-danger">
-                                <span><?= $errors['password'][0] ?></span>
-                            </div>
-                        <?php endif; ?>
-                    </div>
-                    <div class="form-group position-relative has-icon-left mb-3">
-                        <input
-                                type="password"
-                                class="form-control form-control-xl"
-                                placeholder="Xác nhận mật khẩu"
-                                name="repassword"
-                                value="<?= $data['repassword'] ?? '' ?>"
-                        >
-                        <div class="form-control-icon">
-                            <i class="bi bi-shield-lock"></i>
-                        </div>
-                        <?php if (!empty($errors['repassword'])): ?>
-                            <div class="error text-danger">
-                                <span><?= $errors['repassword'][0] ?></span>
-                            </div>
-                        <?php endif; ?>
-                    </div>
-                    <div class="form-group position-relative has-icon-left mb-3">
-                        <input
                                 type="text"
                                 class="form-control form-control-xl"
                                 placeholder="Số điện thoại"
                                 name="phone_number"
-                                value="<?= $data['phone_number'] ?? '' ?>"
+                                value="<?= $user['phone_number'] ?? '' ?>"
                         >
                         <div class="form-control-icon">
                             <i class="bi bi-telephone"></i>
@@ -107,23 +82,17 @@ if (!empty(session_get('data'))) {
                             </div>
                         <?php endif; ?>
                     </div>
-                    <button class="btn btn-primary btn-block btn-lg shadow-lg" name="signup_btn"
+                    <button class="btn btn-primary btn-block btn-lg shadow-lg" name="update_user_btn"
                             style="background: #253977;">
-                        Đăng ký
+                        Cập nhật
                     </button>
                 </form>
-                <div class="text-center mt-5 text-lg fs-4">
-                    <p class='text-gray-600'>Bạn đã có tài khoản?
-                        <a href="?ctr=<?= $ctr ?>&act=signin" class="font-bold" style="color: #253977;">
-                            Đăng nhập ngay
-                        </a>.
-                    </p>
-                </div>
             </div>
         </div>
     </div>
 
 </div>
+<script src="public/admin/dist/assets/extensions/sweetalert2/sweetalert2.min.js"></script>
 <script>
     $(document).ready(function () {
         $("#form").validate({
@@ -179,4 +148,12 @@ if (!empty(session_get('data'))) {
             }
         });
     })
+    <?php if (!empty($status)) : ?>
+    window.onload = () => {
+        Swal.fire({
+            icon: "<?= $status['type'] ?>",
+            title: "<?= $status['title'] ?>",
+        })
+    }
+    <?php endif; ?>
 </script>

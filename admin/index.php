@@ -13,6 +13,7 @@ require '../public/PHPMailer/src/SMTP.php';
 // include libraries
 require_once '../libs/helper.php';
 require_once '../libs/session.php';
+require_once '../libs/cookie.php';
 require_once '../libs/sendmail.php';
 
 // include models
