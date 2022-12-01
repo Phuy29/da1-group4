@@ -51,9 +51,9 @@ if (!empty(session_get('data'))) {
                                         class="form-control"
                                         name="adults"
                                         placeholder="Số người lớn"
-                                        value="<?= $data['adult'] ?? '' ?>"
+                                        value="<?= $data['adults'] ?? '' ?>"
                                 />
-                                <?php if (!empty($errors['adult'])): ?>
+                                <?php if (!empty($errors['adults'])): ?>
                                     <div class="error text-danger">
                                         <span><?= $errors['adults'][0] ?></span>
                                     </div>

@@ -66,13 +66,20 @@ function loai_phong_find_by_name($name) {
 
 function loai_phong_cap_nhat($data)
 {
+    // var_dump($data);
+    // die();
     $table = "room_types";
     $connect = connect();
     if (!empty($data)) {
         $sql = "
             update {$table}
             set
-                name = :name
+                name = :name,
+                adults = :adults,
+                size = :size,
+                bed_type_id = :bed_type_id,
+                description = :description,
+                price = :price
             where id = :id
         ";
         $stmt = $connect->prepare($sql);
@@ -93,5 +100,21 @@ function loai_phong_destroy($data)
         $stmt = $connect->prepare($sql);
         $stmt->execute($data);
         close_connect($connect);
+    }
+}
+
+function service_room_type_find_by_room_type_id($id) {
+    $table = "service_room_type";
+    $connect = connect();
+    if (!empty($id)) {
+        $sql = "
+            select room_service_id from {$table}
+            where room_type_id = :id
+        ";
+        $stmt = $connect->prepare($sql, [PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY]);
+        $stmt->execute(['id' => $id,]);
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        close_connect($connect);
+        return $result;
     }
 }
