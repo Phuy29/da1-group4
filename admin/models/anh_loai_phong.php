@@ -28,7 +28,8 @@ function anh_loai_phong_insert($data = [])
     }
 }
 
-function anh_loai_phong_find_all_by_room_type_id($room_type_id) {
+function anh_loai_phong_find_all_by_room_type_id($room_type_id)
+{
     $table = "room_galleries";
     $connect = connect();
     if (!empty($room_type_id)) {
@@ -43,7 +44,8 @@ function anh_loai_phong_find_all_by_room_type_id($room_type_id) {
         return $result;
     }
 }
-function anh_loai_phong_find_first_by_room_type_id($room_type_id) {
+function anh_loai_phong_find_first_by_room_type_id($room_type_id)
+{
     $table = "room_galleries";
     $connect = connect();
     if (!empty($room_type_id)) {
@@ -75,3 +77,22 @@ function anh_loai_phong_destroy($data)
     }
 }
 
+function anh_loai_phong_cap_nhat($data)
+{
+    // var_dump($data);
+    // die();
+    $table = "room_galleries";
+    $connect = connect();
+    if (!empty($data)) {
+        $sql = "
+            update {$table}
+            set
+                image = :image
+            where room_type_id = :room_type_id
+        ";
+        // die($sql);
+        $stmt = $connect->prepare($sql);
+        $stmt->execute($data);
+        close_connect($connect);
+    }
+}

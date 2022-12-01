@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 29, 2022 at 07:32 AM
+-- Generation Time: Dec 01, 2022 at 02:58 AM
 -- Server version: 5.7.33
 -- PHP Version: 8.1.13
 
@@ -223,8 +223,19 @@ CREATE TABLE `users` (
   `fullname` varchar(255) NOT NULL,
   `phone_number` varchar(15) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `role` int(11) NOT NULL
+  `password` varchar(50) NOT NULL,
+  `role` tinyint(3) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `fullname`, `phone_number`, `email`, `password`, `role`) VALUES
+(1, 'Nguyễn Quang Vinh', '0968739042', 'quangvinks@gmail.com', 'quangvinh', 0),
+(2, 'Nguyễn Văn Quang', '0965212247', 'nguyenvanquanglc2003@gmail.com', 'quangngu', 0),
+(3, 'Nguyễn Duy Quang Vinh', '0123456789', 'nguyenduyquangvinh2906@gmail.com', 'quangvinh26', 0),
+(4, 'Nguyễn Linh Anh', '0123456789', 'nguyenduyquangvinh@gmail.com', 'linhanh26', 0);
 
 -- --------------------------------------------------------
 
@@ -390,7 +401,7 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `vouchers`
