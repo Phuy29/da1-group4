@@ -16,7 +16,7 @@ if (!empty(session_get('errors'))) {
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="first-name-vertical">
-                                    Mã dịch v
+                                    Mã dịch vụ
                                 </label>
                                 <input
                                         type="text"
