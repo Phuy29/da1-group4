@@ -1,18 +1,4 @@
 <?php
-$campaign = [
-    [
-        'id' => 1,
-        'name' => 'Giáng sinh',
-        'started_at' => '2022-12-23',
-        'finished_at' => '2022-12-26',
-    ],
-    [
-        'id' => 2,
-        'name' => 'Tết Dương lịch',
-        'started_at' => '2022-12-29',
-        'finished_at' => '2023-01-02',
-    ]
-];
 $status = [
     [
         'id' => 1,
@@ -116,7 +102,7 @@ if (!empty(session_get('errors'))) {
                                     Chiến dịch
                                 </label>
                                 <select class="form-select" name="campaign_id" id="campaign_id">
-                                    <?php foreach ($campaign as $each) { ?>
+                                    <?php foreach ($campaigns as $each) { ?>
                                         <option value="<?= $each['id'] ?>"
                                             <?php if ($item['campaign_id'] == $each['id']): ?>
                                                 selected

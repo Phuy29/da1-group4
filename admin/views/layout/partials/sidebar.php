@@ -1,10 +1,6 @@
 <?php
 $menu = [
     [
-        "name" => "Dashboard",
-        "href" => "home",
-    ],
-    [
         "name" => "Quản lý loại phòng",
         "href" => "loai_phong",
     ],
@@ -33,8 +29,6 @@ $menu = [
         "href" => "thong_ke",
     ],
 ];
-
-$ctr = $_GET['ctr'];
 ?>
 
 <div id="sidebar" class="active">
@@ -71,6 +65,13 @@ $ctr = $_GET['ctr'];
         <div class="sidebar-menu">
             <ul class="menu">
                 <li class="sidebar-title">Menu</li>
+
+                <li class="sidebar-item <?= $ctr === "index" ? 'active' : '' ?>">
+                    <a href="?ctr=home" class='sidebar-link'>
+                        <i class="bi bi-grid-fill"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
 
                 <?php foreach ($menu as $item) : ?>
                     <li class="sidebar-item <?= $ctr === $item['href'] ? 'active' : '' ?>">
