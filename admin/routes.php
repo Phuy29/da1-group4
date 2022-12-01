@@ -42,6 +42,22 @@ switch ($ctr) {
                 break;
         }
         break;
+    case 'chien_dich':
+        switch ($act) {
+            case 'index':
+            case 'create':
+            case 'store':
+            case 'update':
+            case 'edit':
+            case 'delete':
+                $method = $ctr . '_' . $act;
+                $method();
+                break;
+            default:
+                show_notfound(true);
+                break;
+        }
+        break;
     default:
         show_notfound(true);
         break;
