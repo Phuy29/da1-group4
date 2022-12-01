@@ -8,15 +8,18 @@ if (!empty(session_get('status'))) {
 <section class="section">
     <div class="">
         <div class="card-header d-flex flex-wrap justify-content-between align-items-center">
-            <div>Dịch vụ phòng</div>
-            <a href="?ctr=<?= $ctr ?? 'home' ?>&act=create" class="btn btn-primary my-3">Thêm dịch vụ phòng</a>
+            <div>Voucher</div>
+            <a href="?ctr=<?= $ctr ?? 'home' ?>&act=create" class="btn btn-primary my-3">Tạo voucher</a>
         </div>
         <div class="card-body">
             <table id="table1" class="table w-100">
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Tên dịch vụ</th>
+                        <th>Voucher</th>
+                        <th>Loại</th>
+                        <th>Giảm giá (%)</th>
+                        <th>Tên chiến dịch</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -24,7 +27,10 @@ if (!empty(session_get('status'))) {
                     <?php foreach ($list as $each) : ?>
                         <tr>
                             <td><?= $each['id'] ?></td>
-                            <td><?= $each['name'] ?></td>
+                            <td><?= $each['code'] ?></td>
+                            <td><?= get_voucher_status($each['status']) ?></td>
+                            <td><?= $each['discount'] ?></td>
+                            <td><?= $each['campaign_name'] ?></td>
                             <td>
                                 <a href="?ctr=<?= $ctr ?? 'home' ?>&act=edit&id=<?= $each['id'] ?>" class="btn icon btn-primary me-2">
                                     <i class="bi bi-pencil"></i>

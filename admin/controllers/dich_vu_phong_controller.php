@@ -28,7 +28,7 @@ function dich_vu_phong_store()
         $errors = [];
         foreach ($_POST as $key => $field) {
             if ($key !== 'dich_vu_phong_create' && $field === '') {
-                $errors[$key]['required'] = 'Vui lòng nhập trường này';
+                $errors[$key][] = 'Vui lòng nhập trường này';
             }
         }
         if (!empty($errors)) {
@@ -80,7 +80,7 @@ function dich_vu_phong_update()
         $name = $_POST['name'];
         foreach ($_POST as $key => $field) {
             if ($key !== 'dich_vu_phong_edit' && $field === '') {
-                $errors[$key]['required'] = 'Vui lòng nhập trường này';
+                $errors[$key][] = 'Vui lòng nhập trường này';
             }
         }
         if (!empty($errors)) {
@@ -116,6 +116,7 @@ function dich_vu_phong_delete()
         $data = [
             'id' => $id,
         ];
+        dich_vu_loai_phong_destroy_by_room_service_id(['room_service_id' => $id]);
         dich_vu_phong_destroy($data);
 
         $status = [

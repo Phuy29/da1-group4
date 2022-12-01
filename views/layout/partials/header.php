@@ -1,3 +1,8 @@
+<?php
+if (!empty(session_get('user_session'))) {
+    $user_session = session_get('user_session');
+}
+?>
 <!doctype html>
 <html class="no-js" lang="zxx">
 
@@ -11,6 +16,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="public/img/favicon.ico">
     <!-- Place favicon.ico in the root directory -->
 
+    <link rel="stylesheet" href="public/admin/dist/assets/css/main/app.css">
     <!-- CSS here -->
     <link rel="stylesheet" href="public/css/bootstrap.min.css">
     <link rel="stylesheet" href="public/css/animate.min.css">
@@ -22,6 +28,20 @@
     <link rel="stylesheet" href="public/css/default.css">
     <link rel="stylesheet" href="public/css/style.css">
     <link rel="stylesheet" href="public/css/responsive.css">
+    <link rel="stylesheet" href="public/admin/dist/assets/css/pages/auth.css">
+    <link
+            rel="stylesheet"
+            href="public/admin/dist/assets/extensions/sweetalert2/sweetalert2.min.css"
+    />
+
+    <script src="public/js/vendor/jquery-3.6.0.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/additional-methods.min.js"></script>
+    <style>
+        label.error {
+            color: rgb(220 53 69) !important;
+        }
+    </style>
 </head>
 <body>
 <!-- header -->
@@ -29,7 +49,7 @@
     <div class="header-top second-header d-none d-md-block">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-10 col-md-10 d-none d-lg-block">
+                <div class="col-lg-8 col-md-10 d-none d-lg-block">
                     <div class="header-cta">
                         <ul>
                             <li>
@@ -44,16 +64,14 @@
                     </div>
                 </div>
 
-                <div class="col-lg-2 col-md-2 d-none d-lg-block text-right">
-                    <div class="header-social">
-                                <span>
-                                    <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                                    <a href="#" title="LinkedIn"><i class="fab fa-instagram"></i></a>
-                                    <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
-                                    <a href="#" title="Twitter"><i class="fab fa-youtube"></i></a>
-                                   </span>
-                        <!--  /social media icon redux -->
-                    </div>
+                <div class="col-lg-4 col-md-2 d-none d-lg-block text-right">
+                    <?php if (!empty($user_session)): ?>
+                        <p class="m-0">Xin chào <a class="text-primary"
+                                                   href="?ctr=auth&act=info"><?= $user_session['fullname'] ?></a></p>
+                        <a class="text-danger" href="?ctr=auth&act=logout">Đăng xuất</a>
+                    <?php else: ?>
+                        <a href="?ctr=auth&act=signin" class="btn">Đăng nhập</a>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
@@ -64,7 +82,7 @@
                 <div class="row align-items-center">
                     <div class="col-xl-2 col-lg-2">
                         <div class="logo">
-                            <a href="../../index-2.html"><img src="public/img/logo/logo.png" alt="logo"></a>
+                            <a href="/"><img src="public/img/logo/logo.png" alt="logo"></a>
                         </div>
                     </div>
                     <div class="col-xl-8 col-lg-8">
@@ -72,27 +90,20 @@
                         <div class="main-menu text-center">
                             <nav id="mobile-menu">
                                 <ul>
-                                    <li class="has-sub">
-                                        <a href="../../index-2.html">Home</a>
-                                        <ul>
-                                            <li><a href="../../index-2.html">Home Page 01</a></li>
-                                            <li><a href="../../index-3.html">Home Page 02</a></li>
-
-                                        </ul>
-                                    </li>
-                                    <li><a href="../../about.php">About</a></li>
+                                    <li><a href="/">Home</a></li>
+                                    <li><a href="?act=about">About</a></li>
                                     <li class="has-sub">
                                         <a href="../../room.html">our rooms</a>
                                         <ul>
-                                            <li> <a href="../../room.html">Our Rooms</a></li>
-                                            <li> <a href="../../single-rooms.html">Rooms Details</a></li>
+                                            <li><a href="../../room.html">Our Rooms</a></li>
+                                            <li><a href="../../single-rooms.html">Rooms Details</a></li>
                                         </ul>
                                     </li>
                                     <li class="has-sub">
                                         <a href="../../services.html">Facilities</a>
                                         <ul>
-                                            <li> <a href="../../services.html">Services</a></li>
-                                            <li> <a href="../../single-service.html">Services Details</a></li>
+                                            <li><a href="../../services.html">Services</a></li>
+                                            <li><a href="../../single-service.html">Services Details</a></li>
                                         </ul>
                                     </li>
                                     <li class="has-sub"><a href="#">Pages</a>

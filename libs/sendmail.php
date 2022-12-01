@@ -23,7 +23,6 @@ function sendmail($data = [])
         $mail->Port = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
         $mail->CharSet = "UTF-8";
-        $mail->setLanguage('vi', '../public/PHPMailer/language/');
 
         //Recipients
         $mail->setFrom(_GOOGLE_ACCOUNT, 'ZCube');
@@ -38,9 +37,9 @@ function sendmail($data = [])
 
         //Content
         $mail->isHTML(true);                                  //Set email format to HTML
-        $mail->Subject = 'Chúc mừng bạn đã trúng iphone 19';
-        $mail->Body = '<a href="#">Bấm vào đây để nhận</a>';
-        $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+        $mail->Subject = $title;
+        $mail->Body = $content;
+//        $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
         return $mail->send();
     } catch (Exception $e) {

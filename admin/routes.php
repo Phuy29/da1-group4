@@ -18,6 +18,11 @@ switch ($ctr) {
     case 'loai_phong':
         switch ($act) {
             case 'index':
+            case 'create':
+            case 'store':
+            case 'edit':
+            case 'update':
+            case 'delete':
                 $method = $ctr . '_' . $act;
                 $method();
                 break;
@@ -42,13 +47,22 @@ switch ($ctr) {
                 break;
         }
         break;
+<<<<<<< HEAD
     case 'chien_dich':
+=======
+    case 'voucher':
+>>>>>>> 661d58537fbe3e78b02e1853e53ac8f7d57c179f
         switch ($act) {
             case 'index':
             case 'create':
             case 'store':
+<<<<<<< HEAD
             case 'update':
             case 'edit':
+=======
+            case 'edit':
+            case 'update':
+>>>>>>> 661d58537fbe3e78b02e1853e53ac8f7d57c179f
             case 'delete':
                 $method = $ctr . '_' . $act;
                 $method();

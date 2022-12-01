@@ -27,9 +27,9 @@ if (!empty(session_get('errors'))) {
                                         placeholder="Tên dịch vụ"
                                         data-parsley-required="true"
                                 />
-                                <?php if (!empty($errors['name']['required'])): ?>
+                                <?php if (!empty($errors['name'])): ?>
                                     <div class="error text-danger">
-                                        <span>Vui lòng nhập trường này</span>
+                                        <span><?= $errors['name'][0] ?></span>
                                     </div>
                                 <?php endif; ?>
                             </div>
