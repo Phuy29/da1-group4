@@ -14,9 +14,11 @@ function voucher_index()
 function voucher_create()
 {
     $ctr = "voucher";
+    $campaigns = chien_dich_all();
     $data = [
         'page_title' => 'Tạo voucher',
         'ctr' => $ctr,
+        'campaigns' => $campaigns,
     ];
     render('voucher.create', $data);
 }
@@ -73,10 +75,12 @@ function voucher_edit()
     if (!empty($_GET['id'])) {
         $id = $_GET['id'];
         $item = voucher_find($id);
+        $campaigns = chien_dich_all();
         $data = [
             'page_title' => 'Sửa voucher',
             'ctr' => $ctr,
             'item' => $item,
+            'campaigns' => $campaigns,
         ];
         render('voucher.edit', $data);
     }
