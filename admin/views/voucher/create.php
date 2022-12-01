@@ -22,6 +22,7 @@ $status = [
         'id' => 2,
         'name' => 'Hữu hạn',
     ],
+
 ];
 if (!empty(session_get('errors'))) {
     $errors = session_get('errors');
@@ -90,11 +91,6 @@ if (!empty(session_get('errors'))) {
                                         </option>
                                     <?php } ?>
                                 </select>
-                                <?php if (!empty($errors['discount'])): ?>
-                                    <div class="error text-danger">
-                                        <span><?= $errors['discount'][0] ?></span>
-                                    </div>
-                                <?php endif; ?>
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -109,11 +105,6 @@ if (!empty(session_get('errors'))) {
                                         </option>
                                     <?php } ?>
                                 </select>
-                                <?php if (!empty($errors['discount'])): ?>
-                                    <div class="error text-danger">
-                                        <span><?= $errors['discount'][0] ?></span>
-                                    </div>
-                                <?php endif; ?>
                             </div>
                         </div>
                         <div class="col-12 d-flex justify-content-end">

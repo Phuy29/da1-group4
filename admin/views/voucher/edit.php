@@ -108,11 +108,6 @@ if (!empty(session_get('errors'))) {
                                         </option>
                                     <?php } ?>
                                 </select>
-                                <?php if (!empty($errors['discount'])): ?>
-                                    <div class="error text-danger">
-                                        <span><?= $errors['discount'][0] ?></span>
-                                    </div>
-                                <?php endif; ?>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -131,11 +126,6 @@ if (!empty(session_get('errors'))) {
                                         </option>
                                     <?php } ?>
                                 </select>
-                                <?php if (!empty($errors['discount'])): ?>
-                                    <div class="error text-danger">
-                                        <span><?= $errors['discount'][0] ?></span>
-                                    </div>
-                                <?php endif; ?>
                             </div>
                         </div>
                         <div class="col-12 d-flex justify-content-end">

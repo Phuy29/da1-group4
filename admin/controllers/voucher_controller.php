@@ -26,11 +26,21 @@ function voucher_store()
     $ctr = "voucher";
     if (isset($_POST['voucher_create'])) {
         $errors = [];
+        extract($_POST);
         foreach ($_POST as $key => $field) {
             if ($key !== 'voucher_create' && $field === '') {
                 $errors[$key][] = 'Vui lòng nhập trường này';
             }
         }
+
+        if ($quantity <= 0) {
+            $errors['quantity'][] = "Số voucher không được âm";
+        }
+
+        if ($discount <= 0 || $discount > 100) {
+            $errors['discount'][] = 'Giá trị giảm giá không hợp lệ';
+        }
+
         if (!empty($errors)) {
             session_set('errors', $errors);
             redirect([
@@ -43,10 +53,6 @@ function voucher_store()
 //        print_r($_POST);
 //        echo "</pre>";
 //        die();
-        $quantity = $_POST['quantity'];
-        $discount = $_POST['discount'];
-        $status = $_POST['status'];
-        $campaign_id = $_POST['campaign_id'];
         $voucherArr = generate_voucher_array($quantity, $status, $campaign_id, $discount);
         foreach ($voucherArr as $data) {
 //            echo "<pre>";
@@ -87,15 +93,17 @@ function voucher_update()
     $ctr = 'voucher';
     if (isset($_POST['voucher_edit'])) {
         $errors = [];
-        $id = $_POST['id'];
-        $discount = $_POST['discount'];
-        $status = $_POST['status'];
-        $campaign_id = $_POST['campaign_id'];
+        extract($_POST);
         foreach ($_POST as $key => $field) {
             if ($key !== 'voucher_edit' && $field === '') {
                 $errors[$key][] = 'Vui lòng nhập trường này';
             }
         }
+
+        if ($discount <= 0 || $discount > 100) {
+            $errors['discount'][] = 'Giá trị giảm giá không hợp lệ';
+        }
+
         if (!empty($errors)) {
             session_set('errors', $errors);
             redirect([
