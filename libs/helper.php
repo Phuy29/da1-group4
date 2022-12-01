@@ -33,6 +33,17 @@ function deleteDirectory($dir)
     return rmdir($dir);
 }
 
+function get_voucher_status($status) {
+    switch ($status) {
+        case 0:
+            return 'Đã hết hạn';
+        case 1:
+            return 'Vô hạn';
+        default:
+            return 'Hữu hạn';
+    }
+}
+
 function to_slug($str)
 {
     $str = trim(mb_strtolower($str));
