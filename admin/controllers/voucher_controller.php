@@ -135,7 +135,6 @@ function voucher_delete()
         $data = [
             'id' => $id,
         ];
-        dich_vu_loai_phong_destroy_by_room_service_id(['room_service_id' => $id]);
         voucher_destroy($data);
 
         $status = [
