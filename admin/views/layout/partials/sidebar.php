@@ -28,6 +28,10 @@ $menu = [
         "name" => "Quản lý nguời dùng",
         "href" => "nguoi_dung",
     ],
+    [
+        "name" => "Thống kê",
+        "href" => "thong_ke",
+    ],
 ];
 
 $ctr = $_GET['ctr'];
