@@ -71,3 +71,15 @@ function redirect($data)
         header("location: $path");
     }
 }
+
+function get_role($role)
+{
+    switch ($role) {
+        case 1:
+            return 'Nhân viên';
+        case 2:
+            return 'Quản lý';
+        default:
+            return 'Khách';
+    }
+}

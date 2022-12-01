@@ -37,9 +37,9 @@ function sendmail($data = [])
 
         //Content
         $mail->isHTML(true);                                  //Set email format to HTML
-        $mail->Subject = 'Chúc mừng bạn đã trúng iphone 19';
-        $mail->Body = '<a href="#">Bấm vào đây để nhận</a>';
-        $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+        $mail->Subject = $title;
+        $mail->Body = $content;
+//        $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
         return $mail->send();
     } catch (Exception $e) {
