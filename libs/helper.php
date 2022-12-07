@@ -4,6 +4,11 @@ function get_date($time)
     return date("H:i d/m/Y", strtotime($time));
 }
 
+function get_date_2($time)
+{
+    return date("d/m/Y", strtotime($time));
+}
+
 function get_price($price)
 {
     return number_format((float)$price, 2, '.', '') . '$';
