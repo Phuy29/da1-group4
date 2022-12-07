@@ -86,6 +86,18 @@ if (!empty(session_get('data'))) {
                             style="background: #253977;">
                         Cập nhật
                     </button>
+                    <div class="text-left mt-3 text-lg fs-5">
+                        <p class='text-gray-600 mb-1'>
+                            <a href="?ctr=<?= $ctr ?>&act=change_pass" class="font-bold" style="color: #253977;">
+                                Đổi mật khẩu
+                            </a>
+                        </p>
+                        <p class='text-gray-600 mb-1'>
+                            <a href="?ctr=<?= $ctr ?>&act=forget" class="font-bold" style="color: #253977;">
+                                Quên mật khẩu
+                            </a>
+                        </p>
+                    </div>
                 </form>
             </div>
         </div>

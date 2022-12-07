@@ -16,70 +16,15 @@ switch ($ctr) {
         }
         break;
     case 'loai_phong':
-        switch ($act) {
-            case 'index':
-            case 'create':
-            case 'store':
-            case 'edit':
-            case 'update':
-            case 'delete':
-                $method = $ctr . '_' . $act;
-                $method();
-                break;
-            default:
-                show_notfound(true);
-                break;
-        }
-        break;
     case 'dich_vu_phong':
-        switch ($act) {
-            case 'index':
-            case 'create':
-            case 'store':
-            case 'edit':
-            case 'update':
-            case 'delete':
-                $method = $ctr . '_' . $act;
-                $method();
-                break;
-            default:
-                show_notfound(true);
-                break;
-        }
-        break;
     case 'chien_dich':
-        switch ($act) {
-            case 'index':
-            case 'create':
-            case 'store':
-            case 'update':
-            case 'edit':
-            case 'delete':
-                $method = $ctr . '_' . $act;
-                $method();
-                break;
-            default:
-                show_notfound(true);
-                break;
-        }
-        break;
     case 'voucher':
-        switch ($act) {
-            case 'index':
-            case 'create':
-            case 'store':
-            case 'edit':
-            case 'update':
-            case 'delete':
-                $method = $ctr . '_' . $act;
-                $method();
-                break;
-            default:
-                show_notfound(true);
-                break;
-        }
+    case 'don_dat_phong':
+    case 'nguoi_dung':
+        $method = $ctr . '_' . $act;
+        $method();
         break;
     default:
-        show_notfound(true);
+        show_notfound();
         break;
 }

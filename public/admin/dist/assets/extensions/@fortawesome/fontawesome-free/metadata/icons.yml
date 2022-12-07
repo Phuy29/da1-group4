@@ -10251,7 +10251,7 @@ hospital:
     terms:
       - building
       - covid-19
-      - emergency room
+      - emergency loai_phong
       - medical center
   styles:
     - solid
@@ -10266,7 +10266,7 @@ hospital-alt:
     terms:
       - building
       - covid-19
-      - emergency room
+      - emergency loai_phong
       - medical center
   styles:
     - solid
@@ -14118,7 +14118,7 @@ person-booth:
   search:
     terms:
       - changing
-      - changing room
+      - changing loai_phong
       - election
       - human
       - person

@@ -24,8 +24,8 @@ function chien_dich_store()
 {
     $ctr = "chien_dich";
     if (isset($_POST['chien_dich_create'])) {
-        echo '<pre>';
-        print_r($_POST);
+//        echo '<pre>';
+//        print_r($_POST);
         // die();
         $errors = [];
         foreach ($_POST as $key => $field) {

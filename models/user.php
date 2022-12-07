@@ -126,6 +126,21 @@ function nguoi_dung_cap_nhat($data)
     }
 }
 
+function nguoi_dung_doi_mat_khau($password, $id)
+{
+    $table = "users";
+    $connect = connect();
+    $sql = "
+            update {$table}
+            set
+                password = :password
+            where id = :id
+        ";
+    $stmt = $connect->prepare($sql);
+    $stmt->execute(['id' => $id, 'password' => $password]);
+    close_connect($connect);
+}
+
 function nguoi_dung_destroy($data)
 {
     $table = "users";

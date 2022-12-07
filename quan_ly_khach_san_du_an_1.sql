@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 01, 2022 at 02:58 AM
+-- Generation Time: Dec 07, 2022 at 09:16 PM
 -- Server version: 5.7.33
 -- PHP Version: 8.1.13
 
@@ -53,15 +53,38 @@ CREATE TABLE `booking` (
   `fullname` varchar(255) NOT NULL,
   `phone_number` varchar(15) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `adult` int(11) NOT NULL,
+  `adults` int(11) NOT NULL,
   `children` int(11) NOT NULL,
-  `checkin` timestamp NOT NULL,
-  `checkout` timestamp NOT NULL,
+  `checkin` date NOT NULL,
+  `checkout` date NOT NULL,
   `discount` double(10,2) NOT NULL,
   `total_price` double(10,2) NOT NULL,
-  `status` tinyint(5) NOT NULL,
+  `status` tinyint(5) NOT NULL DEFAULT '0',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `booking`
+--
+
+INSERT INTO `booking` (`id`, `fullname`, `phone_number`, `email`, `adults`, `children`, `checkin`, `checkout`, `discount`, `total_price`, `status`, `created_at`) VALUES
+(1, 'Nguyễn Duy Quang Vinh', '0968739042', 'nguyenduyquangvinh2906@gmail.com', 2, 0, '2022-12-23', '2022-12-30', 0.00, 100.00, 0, '2022-12-02 14:39:12'),
+(2, 'Nguyễn Quang Vinh', '0968739042', 'quangvinks@gmail.com', 5, 0, '2022-12-06', '2022-12-12', 0.00, 660.00, 0, '2022-12-02 19:30:47'),
+(3, 'Nguyễn Quang Vinh', '0968739042', 'quangvinks@gmail.com', 3, 0, '2022-12-13', '2022-12-15', 0.00, 72.00, 0, '2022-12-02 19:32:00'),
+(4, 'Nguyễn Quang Vinh', '0968739042', 'quangvinks@gmail.com', 3, 0, '2022-12-09', '2022-12-14', 40.00, 81.00, 0, '2022-12-02 19:36:17'),
+(5, 'Nguyễn Quang Vinh', '0968739042', 'quangvinks@gmail.com', 5, 0, '2022-12-13', '2022-12-14', 0.00, 110.00, 0, '2022-12-02 19:59:23'),
+(6, 'Nguyễn Duy Quang Vinh', '0123456789', 'nguyenduyquangvinh2906@gmail.com', 1, 0, '2022-12-05', '2022-12-06', 40.00, 16.20, 0, '2022-12-02 20:02:51'),
+(7, 'Nguyễn Duy Quang Vinh', '0968739042', 'quangvinks@gmail.com', 2, 0, '2022-12-07', '2022-12-09', 40.00, 32.40, 0, '2022-12-03 03:07:05'),
+(8, 'Nguyễn Vinh', '0968739042', 'quangvinks@gmail.com', 3, 0, '2022-12-10', '2022-12-12', 0.00, 72.00, 0, '2022-12-03 15:43:37'),
+(9, 'Nguyễn Duy Quang Vinh', '0968739042', 'nguyenduyquangvinh2906@gmail.com', 6, 1, '2022-12-17', '2022-12-20', 0.00, 330.00, 0, '2022-12-03 19:48:20'),
+(10, 'Nguyễn Duy Quang Vinh', '0968739042', 'quangvinks@gmail.com', 4, 0, '2022-12-09', '2022-12-16', 40.00, 462.00, -1, '2022-12-03 19:50:20'),
+(11, 'Nguyễn Quang Vinh', '0968739042', 'quangvinks@gmail.com', 2, 0, '2022-12-06', '2022-12-09', 15.00, 91.80, 0, '2022-12-05 09:26:49'),
+(12, 'Nguyễn Quang Vinh', '0968739042', 'quangvinks@gmail.com', 6, 0, '2022-12-17', '2022-12-19', 15.00, 187.00, 1, '2022-12-05 09:39:16'),
+(13, 'Nguyễn Duy Quang Vinh', '0123456789', 'nguyenduyquangvinh2906@gmail.com', 7, 0, '2022-12-12', '2022-12-16', 0.00, 440.00, 1, '2022-12-05 15:59:59'),
+(14, 'Nguyễn Duy Quang Vinh', '0123456789', 'nguyenduyquangvinh2906@gmail.com', 7, 0, '2022-12-07', '2022-12-11', 40.00, 264.00, 0, '2022-12-06 03:45:46'),
+(15, 'Nguyễn Quang Vinh', '0968739042', 'quangvinks@gmail.com', 10, 0, '2022-12-13', '2022-12-14', 0.00, 36.00, 0, '2022-12-07 13:58:08'),
+(16, 'Nguyễn Duy Quang Vinh', '0968739042', 'quangvinks@gmail.com', 7, 0, '2022-12-20', '2022-12-30', 40.00, 162.00, 0, '2022-12-07 15:03:31'),
+(17, 'Nguyễn Duy Quang Vinh', '0123456789', 'nguyenduyquangvinh2906@gmail.com', 4, 0, '2022-12-15', '2022-12-20', 0.00, 180.00, 0, '2022-12-07 17:03:18');
 
 -- --------------------------------------------------------
 
@@ -76,6 +99,29 @@ CREATE TABLE `booking_detail` (
   `price` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `booking_detail`
+--
+
+INSERT INTO `booking_detail` (`id`, `room_type_id`, `booking_id`, `price`) VALUES
+(1, 17, 1, 100),
+(2, 18, 2, 110),
+(3, 17, 3, 36),
+(4, 16, 4, 27),
+(5, 18, 5, 110),
+(6, 16, 6, 27),
+(7, 16, 7, 27),
+(8, 17, 8, 36),
+(9, 18, 9, 110),
+(10, 18, 10, 110),
+(11, 17, 11, 36),
+(12, 18, 12, 110),
+(13, 18, 13, 110),
+(14, 18, 14, 110),
+(15, 17, 15, 36),
+(16, 16, 16, 27),
+(17, 17, 17, 36);
+
 -- --------------------------------------------------------
 
 --
@@ -89,18 +135,13 @@ CREATE TABLE `campaigns` (
   `finished_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `menu`
+-- Dumping data for table `campaigns`
 --
 
-CREATE TABLE `menu` (
-  `id` int(11) NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `link` varchar(255) NOT NULL,
-  `parent_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+INSERT INTO `campaigns` (`id`, `name`, `started_at`, `finished_at`) VALUES
+(1, 'Giáng sinh', '2022-12-23 03:18:51', '2022-12-26 03:18:51'),
+(3, 'Tết Âm lịch', '2023-01-20 17:00:00', '2023-01-24 17:00:00');
 
 -- --------------------------------------------------------
 
@@ -119,10 +160,25 @@ CREATE TABLE `room_galleries` (
 --
 
 INSERT INTO `room_galleries` (`id`, `image`, `room_type_id`) VALUES
-(8, 'public/uploads/loai-phong/phong-doi/0.png', 5),
-(9, 'public/uploads/loai-phong/phong-doi/1.png', 5),
-(10, 'public/uploads/loai-phong/phong-doi/2.jpg', 5),
-(11, 'public/uploads/loai-phong/phong-doi/3.png', 5);
+(21, 'public/uploads/loai-phong/16/0.jpg', 16),
+(22, 'public/uploads/loai-phong/16/1.jpg', 16),
+(23, 'public/uploads/loai-phong/16/2.jpg', 16),
+(24, 'public/uploads/loai-phong/16/3.jpg', 16),
+(25, 'public/uploads/loai-phong/16/4.jpg', 16),
+(26, 'public/uploads/loai-phong/16/5.jpg', 16),
+(27, 'public/uploads/loai-phong/17/0.jpg', 17),
+(28, 'public/uploads/loai-phong/17/1.jpg', 17),
+(29, 'public/uploads/loai-phong/17/2.jpg', 17),
+(30, 'public/uploads/loai-phong/17/3.jpg', 17),
+(31, 'public/uploads/loai-phong/17/4.jpg', 17),
+(32, 'public/uploads/loai-phong/17/5.jpg', 17),
+(33, 'public/uploads/loai-phong/17/6.jpg', 17),
+(34, 'public/uploads/loai-phong/17/7.jpg', 17),
+(36, 'public/uploads/loai-phong/18/1.jpg', 18),
+(37, 'public/uploads/loai-phong/18/2.jpg', 18),
+(38, 'public/uploads/loai-phong/18/3.jpg', 18),
+(39, 'public/uploads/loai-phong/18/4.jpg', 18),
+(40, 'public/uploads/loai-phong/18/5.jpg', 18);
 
 -- --------------------------------------------------------
 
@@ -156,11 +212,10 @@ INSERT INTO `room_services` (`id`, `name`) VALUES
 CREATE TABLE `room_types` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `image` varchar(255) DEFAULT NULL,
   `adults` int(11) NOT NULL,
   `size` double(10,2) NOT NULL,
   `bed_type_id` int(11) NOT NULL,
-  `description` varchar(255) NOT NULL,
+  `description` text NOT NULL,
   `price` double(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -168,8 +223,10 @@ CREATE TABLE `room_types` (
 -- Dumping data for table `room_types`
 --
 
-INSERT INTO `room_types` (`id`, `name`, `image`, `adults`, `size`, `bed_type_id`, `description`, `price`) VALUES
-(5, 'Phòng đôi', NULL, 2, 25.30, 3, 'Phòng đôi', 32.00);
+INSERT INTO `room_types` (`id`, `name`, `adults`, `size`, `bed_type_id`, `description`, `price`) VALUES
+(16, 'King Deluxe Studio', 3, 35.00, 2, 'King Deluxe Studio rộng 35 m2 được thiết kế với một giường lớn tiện dụng, một ban công gần gũi với thiên nhiên tạo nên nét đẹp phù hợp với khách hàng cần thời gian thư giãn, nghỉ ngơi sao khi về thừ nơi làm việc.\r\n\r\nHân hạnh được mang đến cho bạn những phú giây tuyệt vời tại đây.', 27.00),
+(17, 'King Deluxe 1 Bedroom', 2, 45.00, 3, 'King Deluxe Studio rộng 45 m2 được thiết kế với 1 phòng ngủ riêng có một giường lớn tiện dụng, một phòng khách cso sofa và bếp phù hợp với khách hàng cần có khoảng không gian tiện nghi như ở nhà.\r\n\r\nHân hạnh được mang đến cho bạn những phú giây tuyệt vời tại đây.', 36.00),
+(18, 'ROOFTOP 5BR', 10, 330.00, 3, 'IREST ROOFTOP 5BR WITH TERRACE là loại phòng nằm ở những tầng cao nhất của tòa nhà hiện đại giữa lòng Hà Nội với tổng diện tích 330 m2.\r\nGồm 1 phòng khách lớn đầy sang trọng cùng TV thông minh có kích thước lên tới 65\", 5 phòng ngủ mang lại cảm giác ấm cúng, 4 phòng tắm, 1 bếp lớn đầy đủ tiện nghi và 1 sân ngoài rộng hướng ra thành phố thủ đô, loại phòng được thiết kế đơn giản, ấm cúng nhưng cực kỳ hiện đại này chắc chắn sẽ đem đến cho khách hàng những trải nghiệm tốt nhất!', 110.00);
 
 -- --------------------------------------------------------
 
@@ -188,29 +245,24 @@ CREATE TABLE `service_room_type` (
 --
 
 INSERT INTO `service_room_type` (`id`, `room_service_id`, `room_type_id`) VALUES
-(16, 1, 5),
-(17, 2, 5),
-(18, 3, 5),
-(19, 4, 5);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `settings`
---
-
-CREATE TABLE `settings` (
-  `id` int(11) NOT NULL,
-  `logo` varchar(255) NOT NULL,
-  `website_url` varchar(255) NOT NULL,
-  `address` varchar(255) NOT NULL,
-  `phone_number` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `copyright` varchar(255) NOT NULL,
-  `fb_url` varchar(255) NOT NULL,
-  `ins_url` varchar(255) NOT NULL,
-  `ytb_url` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+(40, 1, 16),
+(41, 2, 16),
+(42, 3, 16),
+(43, 4, 16),
+(44, 7, 16),
+(45, 8, 16),
+(46, 1, 17),
+(47, 2, 17),
+(48, 3, 17),
+(49, 4, 17),
+(50, 7, 17),
+(51, 8, 17),
+(52, 1, 18),
+(59, 2, 18),
+(60, 3, 18),
+(61, 4, 18),
+(62, 7, 18),
+(63, 8, 18);
 
 -- --------------------------------------------------------
 
@@ -232,10 +284,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `fullname`, `phone_number`, `email`, `password`, `role`) VALUES
-(1, 'Nguyễn Quang Vinh', '0968739042', 'quangvinks@gmail.com', 'quangvinh', 0),
+(1, 'Nguyễn Quang Vinh', '0968739042', 'quangvinks@gmail.com', 'quangvinh26', 0),
 (2, 'Nguyễn Văn Quang', '0965212247', 'nguyenvanquanglc2003@gmail.com', 'quangngu', 0),
-(3, 'Nguyễn Duy Quang Vinh', '0123456789', 'nguyenduyquangvinh2906@gmail.com', 'quangvinh26', 0),
-(4, 'Nguyễn Linh Anh', '0123456789', 'nguyenduyquangvinh@gmail.com', 'linhanh26', 0);
+(3, 'Nguyễn Duy Quang Vinh', '0123456789', 'nguyenduyquangvinh2906@gmail.com', 'quangvinh', 2),
+(4, 'Nguyễn Linh Anh', '0123456789', 'nguyenduyquangvinh@gmail.com', 'linhanh26', 1);
 
 -- --------------------------------------------------------
 
@@ -248,8 +300,45 @@ CREATE TABLE `vouchers` (
   `code` varchar(20) NOT NULL,
   `discount` double(10,2) NOT NULL,
   `campaign_id` int(11) NOT NULL,
+  `refresh_time` int(11) DEFAULT '0',
+  `used` int(11) DEFAULT '0',
+  `max` int(11) DEFAULT NULL,
   `status` tinyint(3) NOT NULL COMMENT '- 0 là không thể sử dụng\r\n- 1 là mã nhập vô hạn\r\n- 2 là mã nhập 1 lần'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `vouchers`
+--
+
+INSERT INTO `vouchers` (`id`, `code`, `discount`, `campaign_id`, `refresh_time`, `used`, `max`, `status`) VALUES
+(1, '7JYK9VZFZH', 40.00, 1, 0, 2, 15, 2),
+(2, '5IX8IDZNQL', 40.00, 1, 0, 0, NULL, 0),
+(3, '8GXJOONFY9', 20.00, 1, 0, 0, NULL, 1),
+(4, 'NH8QXE2N2I', 15.00, 3, 5, 1, 1, 2),
+(5, 'R9HHDEX5GW', 10.00, 3, 0, 0, 20, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `voucher_used`
+--
+
+CREATE TABLE `voucher_used` (
+  `id` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `code` varchar(20) NOT NULL,
+  `refresh_time` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `voucher_used`
+--
+
+INSERT INTO `voucher_used` (`id`, `email`, `code`, `refresh_time`) VALUES
+(1, 'quangvinks@gmail.com', 'NH8QXE2N2I', 2),
+(2, 'quangvinks@gmail.com', 'NH8QXE2N2I', 4),
+(3, 'nguyenduyquangvinh2906@gmail.com', '7JYK9VZFZH', 0),
+(4, 'quangvinks@gmail.com', '7JYK9VZFZH', 0);
 
 --
 -- Indexes for dumped tables
@@ -282,12 +371,6 @@ ALTER TABLE `campaigns`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `menu`
---
-ALTER TABLE `menu`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `room_galleries`
 --
 ALTER TABLE `room_galleries`
@@ -315,12 +398,6 @@ ALTER TABLE `service_room_type`
   ADD KEY `room_type_id` (`room_type_id`);
 
 --
--- Indexes for table `settings`
---
-ALTER TABLE `settings`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -332,6 +409,12 @@ ALTER TABLE `users`
 ALTER TABLE `vouchers`
   ADD PRIMARY KEY (`id`),
   ADD KEY `campaign_id` (`campaign_id`);
+
+--
+-- Indexes for table `voucher_used`
+--
+ALTER TABLE `voucher_used`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -347,31 +430,25 @@ ALTER TABLE `bed_types`
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `booking_detail`
 --
 ALTER TABLE `booking_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `campaigns`
 --
 ALTER TABLE `campaigns`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `menu`
---
-ALTER TABLE `menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `room_galleries`
 --
 ALTER TABLE `room_galleries`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `room_services`
@@ -383,19 +460,13 @@ ALTER TABLE `room_services`
 -- AUTO_INCREMENT for table `room_types`
 --
 ALTER TABLE `room_types`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `service_room_type`
 --
 ALTER TABLE `service_room_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
-
---
--- AUTO_INCREMENT for table `settings`
---
-ALTER TABLE `settings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -407,7 +478,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `vouchers`
 --
 ALTER TABLE `vouchers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `voucher_used`
+--
+ALTER TABLE `voucher_used`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables

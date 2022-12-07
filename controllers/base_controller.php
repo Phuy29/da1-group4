@@ -28,3 +28,13 @@ function render($path, $data = [])
         header('location: ?ctr=404');
     }
 }
+
+function generate_template($name, $data)
+{
+    $template_folder = 'public/template/';
+    $view_file = $template_folder . $name . '.php';
+    extract($data);
+    ob_start();
+    require_once($view_file);
+    return ob_get_clean();
+}

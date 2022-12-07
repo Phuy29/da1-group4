@@ -25814,7 +25814,7 @@
 
         if (typeof array === 'string') {
           array = array.replace(SVG.regex.numbersWithDots, pathRegReplace) // convert 45.123.123 to 45.123 .123
-          .replace(SVG.regex.pathLetters, ' $& ') // put some room between letters and numbers
+          .replace(SVG.regex.pathLetters, ' $& ') // put some loai_phong between letters and numbers
           .replace(SVG.regex.hyphen, '$1 -') // add space before hyphen
           .trim() // trim
           .split(SVG.regex.delimiter); // split into array
