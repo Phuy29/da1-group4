@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 07, 2022 at 09:16 PM
+-- Generation Time: Dec 07, 2022 at 09:32 PM
 -- Server version: 5.7.33
 -- PHP Version: 8.1.13
 
@@ -131,8 +131,8 @@ INSERT INTO `booking_detail` (`id`, `room_type_id`, `booking_id`, `price`) VALUE
 CREATE TABLE `campaigns` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `started_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `finished_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `started_at` date NOT NULL,
+  `finished_at` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -140,8 +140,8 @@ CREATE TABLE `campaigns` (
 --
 
 INSERT INTO `campaigns` (`id`, `name`, `started_at`, `finished_at`) VALUES
-(1, 'Giáng sinh', '2022-12-23 03:18:51', '2022-12-26 03:18:51'),
-(3, 'Tết Âm lịch', '2023-01-20 17:00:00', '2023-01-24 17:00:00');
+(1, 'Giáng sinh', '2022-12-23', '2022-12-26'),
+(3, 'Tết Âm lịch', '2023-01-21', '2023-01-25');
 
 -- --------------------------------------------------------
 
@@ -442,7 +442,7 @@ ALTER TABLE `booking_detail`
 -- AUTO_INCREMENT for table `campaigns`
 --
 ALTER TABLE `campaigns`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `room_galleries`
