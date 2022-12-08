@@ -54,11 +54,11 @@ if (!empty(session_get('user_session'))) {
                         <ul>
                             <li>
                                 <i class="far fa-clock"></i>
-                                <span>Mon - Fri: 9:00 - 19:00/ Closed on Weekends</span>
+                                <span>9:00 - 19:00 / Vào tất cả các ngày trong tuần</span>
                             </li>
                             <li>
                                 <i class="far fa-mobile"></i>
-                                <strong>+91 705 210-1786</strong>
+                                <strong>0123.456.789</strong>
                             </li>
                         </ul>
                     </div>
@@ -66,11 +66,18 @@ if (!empty(session_get('user_session'))) {
 
                 <div class="col-lg-4 col-md-2 d-none d-lg-block text-right">
                     <?php if (!empty($user_session)): ?>
-                        <p class="m-0">Xin chào <a class="text-primary"
+                        <p class="m-0">Xin chào <a class="text-decoration-underline"
                                                    href="?ctr=auth&act=info"><?= $user_session['fullname'] ?></a></p>
-                        <a class="text-danger" href="?ctr=auth&act=logout">Đăng xuất</a>
+                        <div>
+                            <?php if ($user_session['role'] != 0): ?>
+                                <a class="py-1 px-2 mt-2 rounded btn-secondary" href="admin">Trang quản trị</a>
+                            <?php endif; ?>
+                            <a class="py-1 px-2 mt-2 rounded btn-danger" href="?ctr=auth&act=logout">Đăng xuất</a>
+                        </div>
                     <?php else: ?>
-                        <a href="?ctr=auth&act=signin" class="btn">Đăng nhập</a>
+                        <a href="?ctr=auth&act=signin" class="btn rounded p-2 me-2">Đăng nhập</a>
+                        <a href="?ctr=auth&act=signup" class="btn btn-secondary rounded p-2"
+                           style="background: #6c757d;">Đăng ký</a>
                     <?php endif; ?>
                 </div>
             </div>
@@ -82,7 +89,7 @@ if (!empty(session_get('user_session'))) {
                 <div class="row align-items-center">
                     <div class="col-xl-2 col-lg-2">
                         <div class="logo">
-                            <a href="/"><img src="public/img/logo/logo.png" alt="logo"></a>
+                            <a href="<?= _BASE_URL ?>"><img src="public/img/logo/logo.png" alt="logo"></a>
                         </div>
                     </div>
                     <div class="col-xl-8 col-lg-8">
@@ -90,47 +97,20 @@ if (!empty(session_get('user_session'))) {
                         <div class="main-menu text-center">
                             <nav id="mobile-menu">
                                 <ul>
-                                    <li><a href="/">Home</a></li>
-                                    <li><a href="?act=about">About</a></li>
-                                    <li class="has-sub">
-                                        <a href="../../room.html">our rooms</a>
-                                        <ul>
-                                            <li><a href="../../room.html">Our Rooms</a></li>
-                                            <li><a href="../../single-rooms.html">Rooms Details</a></li>
-                                        </ul>
+                                    <li><a href="<?= _BASE_URL ?>">TRANG CHỦ</a></li>
+                                    <li><a href="?act=about">GIỚI THIỆU</a></li>
+                                    <li class="">
+                                        <a href="?ctr=loai_phong">DANH SÁCH LOẠI PHÒNG</a>
                                     </li>
-                                    <li class="has-sub">
-                                        <a href="../../services.html">Facilities</a>
-                                        <ul>
-                                            <li><a href="../../services.html">Services</a></li>
-                                            <li><a href="../../single-service.html">Services Details</a></li>
-                                        </ul>
+                                    <li class="">
+                                        <a href="?act=services">DỊCH VỤ</a>
                                     </li>
-                                    <li class="has-sub"><a href="#">Pages</a>
-                                        <ul>
-                                            <li><a href="../../projects.html">Gallery</a></li>
-                                            <li><a href="../../faq.html">Faq</a></li>
-                                            <li><a href="../../team.html">Team</a></li>
-                                            <li><a href="../../team-single.html">Team Details</a></li>
-                                            <li><a href="../../pricing.html">Pricing</a></li>
-                                            <li><a href="../../shop.html">Shop</a></li>
-                                            <li><a href="../../shop-details.html">Shop Details</a>
-                                        </ul>
-                                    </li>
-                                    <li class="has-sub">
-                                        <a href="../../blog.html">Blog</a>
-                                        <ul>
-                                            <li><a href="../../blog.html">Blog</a></li>
-                                            <li><a href="../../blog-details.html">Blog Details</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="../../contact.html">Contact</a></li>
                                 </ul>
                             </nav>
                         </div>
                     </div>
                     <div class="col-xl-2 col-lg-2 d-none d-lg-block">
-                        <a href="../../contact.html" class="top-btn mt-10 mb-10">reservation </a>
+                        <a href="?ctr=dat_phong&act=check_available_home" class="top-btn mt-10 mb-10">Tìm phòng </a>
                     </div>
 
                     <div class="col-12">

@@ -3,6 +3,10 @@ if (!empty(session_get('errors'))) {
     $errors = session_get('errors');
     session_delete('errors');
 }
+if (!empty(session_get('status'))) {
+    $status = session_get('status');
+    session_delete('status');
+}
 if (!empty(session_get('data'))) {
     $data = session_get('data');
     session_delete('data');
@@ -16,7 +20,75 @@ if (!empty(session_get('data'))) {
     </div>
     <div class="card-content">
         <div class="card-body">
-            <form class="form form-vertical" action="?ctr=<?= $ctr ?? 'home' ?>&act=update" method="post" enctype="multipart/form-data">
+
+            <div
+                    id="carouselExampleControls"
+                    class="carousel slide w-50 align-self-center"
+                    data-ride="carousel"
+                    style="margin: 0 auto;"
+            >
+                <div class="carousel-inner">
+                    <p>Click vào ảnh muốn thay đổi để thay đổi ảnh</p>
+                    <?php
+                    $active = true;
+                    foreach ($images as $image) {
+                        $class_active = '';
+                        if ($active) {
+                            $class_active = 'active';
+                            $active = false;
+                        }
+                        $src = '../' . $image['image'];
+                        ?>
+                        <div class="carousel-item <?= $class_active ?>">
+                            <form method="post" class="position-relative" enctype="multipart/form-data"
+                                  id="form-image-<?= $image['id'] ?>"
+                                  action="?ctr=<?= $ctr ?>&act=change_images&id=<?= $image['id'] ?>">
+                                <input type="hidden" name="id" value="<?= $image['id'] ?>">
+                                <a href="?ctr=<?= $ctr ?>&act=destroy_anh_loai_phong&id=<?= $image['id'] ?>"
+                                   class="position-absolute fs-3 end-0 bg-primary text-white" style="z-index: 100;">
+                                    <i class="fa fa-window-close"
+                                       aria-hidden="true"></i>
+                                </a>
+                                <label for="image-<?= $image['id'] ?>" class="">
+                                    <img
+                                            src="<?= $src ?>"
+                                            class="d-block w-100"
+                                            alt="..."
+                                    />
+                                </label>
+                                <input type="file" name="image" id="image-<?= $image['id'] ?>" class="d-none"
+                                       onchange="submitForm(<?= $image['id'] ?>)" data-test="<?= $image['id'] ?>">
+                            </form>
+                        </div>
+                    <?php } ?>
+                </div>
+                <a
+                        class="carousel-control-prev"
+                        href="#carouselExampleControls"
+                        role="button"
+                        data-bs-slide="prev"
+                >
+                        <span
+                                class="carousel-control-prev-icon"
+                                aria-hidden="true"
+                        ></span>
+                    <span class="visually-hidden">Previous</span>
+                </a>
+                <a
+                        class="carousel-control-next"
+                        href="#carouselExampleControls"
+                        role="button"
+                        data-bs-slide="next"
+                >
+                        <span
+                                class="carousel-control-next-icon"
+                                aria-hidden="true"
+                        ></span>
+                    <span class="visually-hidden">Next</span>
+                </a>
+            </div>
+            <form class="form form-vertical" action="?ctr=<?= $ctr ?? 'home' ?>&act=update" method="post"
+                  enctype="multipart/form-data">
                 <div class="form-body">
                     <div class="row">
                         <div class="col-12">
@@ -24,7 +96,8 @@ if (!empty(session_get('data'))) {
                                 <label for="first-name-vertical">
                                     Mã loại phòng
                                 </label>
-                                <input type="text" id="first-name-vertical" class="form-control" name="name" placeholder="Tên dịch vụ" disabled value="<?= $item['id'] ?? '' ?>" />
+                                <input type="text" id="first-name-vertical" class="form-control" name="name"
+                                       placeholder="Tên dịch vụ" disabled value="<?= $item['id'] ?? '' ?>"/>
                                 <input type="hidden" name="id" value="<?= $item['id'] ?? '' ?>">
                             </div>
                         </div>
@@ -33,7 +106,8 @@ if (!empty(session_get('data'))) {
                                 <label for="first-name-vertical">
                                     Tên loại phòng
                                 </label>
-                                <input type="text" id="first-name-vertical" class="form-control" name="name" placeholder="Tên loại phòng" value="<?= $item['name'] ?? '' ?>" />
+                                <input type="text" id="first-name-vertical" class="form-control" name="name"
+                                       placeholder="Tên loại phòng" value="<?= $item['name'] ?? '' ?>"/>
                                 <?php if (!empty($errors['name'])) : ?>
                                     <div class="error text-danger">
                                         <span><?= $errors['name'][0] ?></span>
@@ -46,7 +120,8 @@ if (!empty(session_get('data'))) {
                                 <label for="adult">
                                     Số người lớn
                                 </label>
-                                <input type="text" id="adult" class="form-control" name="adults" placeholder="Số người lớn" value="<?= $item['adults'] ?? '' ?>" />
+                                <input type="text" id="adult" class="form-control" name="adults"
+                                       placeholder="Số người lớn" value="<?= $item['adults'] ?? '' ?>"/>
                                 <?php if (!empty($errors['adult'])) : ?>
                                     <div class="error text-danger">
                                         <span><?= $errors['adults'][0] ?></span>
@@ -59,7 +134,8 @@ if (!empty(session_get('data'))) {
                                 <label for="size">
                                     Diện tích
                                 </label>
-                                <input type="text" id="size" class="form-control" name="size" placeholder="Diện tích" value="<?= $item['size'] ?? '' ?>" />
+                                <input type="text" id="size" class="form-control" name="size" placeholder="Diện tích"
+                                       value="<?= $item['size'] ?? '' ?>"/>
                                 <?php if (!empty($errors['size'])) : ?>
                                     <div class="error text-danger">
                                         <span><?= $errors['size'][0] ?></span>
@@ -72,7 +148,8 @@ if (!empty(session_get('data'))) {
                                 <label for="bed_type_id">
                                     Loại giường
                                 </label>
-                                <select name="bed_type_id" class="form-select" id="bed_type_id" value="<?= $item['bed_type_id'] ?? '' ?>">
+                                <select name="bed_type_id" class="form-select" id="bed_type_id"
+                                        value="<?= $item['bed_type_id'] ?? '' ?>">
                                     <?php foreach ($bed_types as $bed_type) : ?>
                                         <option value="<?= $bed_type['id'] ?>" <?php if (!empty($item['bed_type_id']) && $bed_type['id'] == $item['bed_type_id']) : ?> selected <?php endif; ?>>
                                             <?= $bed_type['name'] ?>
@@ -86,7 +163,8 @@ if (!empty(session_get('data'))) {
                                 <label for="price">
                                     Giá ($)
                                 </label>
-                                <input type="text" id="price" class="form-control" name="price" placeholder="Giá" value="<?= $item['price'] ?? '' ?>" />
+                                <input type="text" id="price" class="form-control" name="price" placeholder="Giá"
+                                       value="<?= $item['price'] ?? '' ?>"/>
                                 <?php if (!empty($errors['price'])) : ?>
                                     <div class="error text-danger">
                                         <span><?= $errors['price'][0] ?></span>
@@ -104,7 +182,10 @@ if (!empty(session_get('data'))) {
                                         <li class="d-inline-block me-4 mb-1">
                                             <div class="form-check">
                                                 <div class="checkbox">
-                                                    <input type="checkbox" id="checkbox<?= $room_service['id'] ?>" class="form-check-input" name="room_type_services[]" value="<?= $room_service['id'] ?>" data-parsley-required="true" <?php if (!empty($room_service_ids) && in_array($room_service['id'], $room_service_ids)) : ?> checked <?php endif; ?> />
+                                                    <input type="checkbox" id="checkbox<?= $room_service['id'] ?>"
+                                                           class="form-check-input" name="room_type_services[]"
+                                                           value="<?= $room_service['id'] ?>"
+                                                           data-parsley-required="true" <?php if (!empty($room_service_ids) && in_array($room_service['id'], $room_service_ids)) : ?> checked <?php endif; ?> />
                                                     <label for="checkbox<?= $room_service['id'] ?>"><?= $room_service['name'] ?></label>
                                                 </div>
                                             </div>
@@ -120,23 +201,11 @@ if (!empty(session_get('data'))) {
                         </div>
                         <div class="col-12">
                             <div class="form-group">
-                                <label for="">
-                                    Ảnh phòng (Có thể upload nhiều ảnh)
-                                </label>
-                                <input type="file" class="form-control my-pond" name="photos[]" multiple />
-                                <?php if (!empty($errors['photos'])) : ?>
-                                    <div class="error text-danger">
-                                        <span><?= $errors['photos'][0] ?></span>
-                                    </div>
-                                <?php endif; ?>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="form-group">
                                 <label for="description">
                                     Mô tả
                                 </label>
-                                <textarea class="form-control" name="description" id="exampleFormControlTextarea1" placeholder="Mô tả" rows="3"><?= $item['description'] ?? false ?></textarea>
+                                <textarea class="form-control" name="description" id="exampleFormControlTextarea1"
+                                          placeholder="Mô tả" rows="3"><?= $item['description'] ?? false ?></textarea>
                                 <?php if (!empty($errors['description'])) : ?>
                                     <div class="error text-danger">
                                         <span><?= $errors['description'][0] ?></span>
@@ -159,7 +228,7 @@ if (!empty(session_get('data'))) {
     </div>
 </div>
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         $(".form").validate({
             rules: {
                 "name": {
@@ -220,3 +289,19 @@ if (!empty(session_get('data'))) {
 </script>
 <script src="../public/admin/dist/assets/extensions/parsleyjs/parsley.min.js"></script>
 <script src="../public/admin/dist/assets/js/pages/parsley.js"></script>
+<script src="../public/admin/dist/assets/extensions/sweetalert2/sweetalert2.min.js"></script>
+<script>
+    function submitForm(id) {
+        let formSelector = `form-image-${id}`;
+        const formElement = document.getElementById(formSelector);
+        formElement.submit();
+    }
+    <?php if (!empty($status)) : ?>
+    window.onload = () => {
+        Swal.fire({
+            icon: "<?= $status['type'] ?>",
+            title: "<?= $status['title'] ?>",
+        })
+    }
+    <?php endif; ?>
+</script>

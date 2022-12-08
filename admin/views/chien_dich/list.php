@@ -27,8 +27,8 @@ if (!empty(session_get('status'))) {
                         <tr>
                             <td><?= $each['id'] ?></td>
                             <td><?= $each['name'] ?></td>
-                            <td><?= get_date($each['started_at']) ?></td>
-                            <td><?= get_date($each['finished_at']) ?></td>
+                            <td><?= get_date_2($each['started_at']) ?></td>
+                            <td><?= get_date_2($each['finished_at']) ?></td>
                             <td>
                                 <a href="?ctr=<?= $ctr ?? 'home' ?>&act=edit&id=<?= $each['id'] ?>" class="btn icon btn-primary me-2">
                                     <i class="bi bi-pencil"></i>

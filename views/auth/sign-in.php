@@ -1,9 +1,11 @@
 <?php
-//var_dump(cookie_get('verifyCode'));
-//die();
 if (!empty(session_get('errors'))) {
     $errors = session_get('errors');
     session_delete('errors');
+}
+if (!empty(session_get('status'))) {
+    $status = session_get('status');
+    session_delete('status');
 }
 if (!empty(session_get('data'))) {
     $data = session_get('data');
@@ -18,7 +20,7 @@ if (!empty(session_get('data'))) {
         <div class="col-12 py-5">
             <div id="auth-left" class="d-flex flex-column align-items-center p-0">
                 <h1 class="auth-title">Đăng nhập</h1>
-                <p class="auth-subtitle mb-5">Đăng nhập vào ZCube.</p>
+                <p class="auth-subtitle mb-5">Đăng nhập vào RioRelax.</p>
 
                 <form action="?ctr=<?= $ctr ?? 'home' ?>&act=process_signin" id="form" method="post" class="w-50">
                     <div class="form-group position-relative has-icon-left mb-3">
@@ -60,19 +62,25 @@ if (!empty(session_get('data'))) {
                             style="background: #253977;">
                         Đăng nhập
                     </button>
+                    <div class="text-left mt-3 text-lg fs-5">
+                        <p class='text-gray-600 mb-1'>
+                            <a href="?ctr=<?= $ctr ?>&act=change_pass" class="font-bold" style="color: #253977;">
+                                Đổi mật khẩu
+                            </a>
+                        </p>
+                        <p class='text-gray-600 mb-1'>
+                            <a href="?ctr=<?= $ctr ?>&act=forget" class="font-bold" style="color: #253977;">
+                                Quên mật khẩu
+                            </a>
+                        </p>
+                    </div>
                 </form>
-                <div class="text-center mt-5 text-lg fs-4">
-                    <p class='text-gray-600'>Bạn chưa có tài khoản?
-                        <a href="?ctr=<?= $ctr ?>&act=signup" class="font-bold" style="color: #253977;">
-                            Đăng ký ngay
-                        </a>.
-                    </p>
-                </div>
             </div>
         </div>
     </div>
 
 </div>
+<script src="public/admin/dist/assets/extensions/sweetalert2/sweetalert2.min.js"></script>
 <script>
     $(document).ready(function () {
         $("#form").validate({
@@ -98,4 +106,12 @@ if (!empty(session_get('data'))) {
             }
         });
     })
+    <?php if (!empty($status)) : ?>
+    window.onload = () => {
+        Swal.fire({
+            icon: "<?= $status['type'] ?>",
+            title: "<?= $status['title'] ?>",
+        })
+    }
+    <?php endif; ?>
 </script>

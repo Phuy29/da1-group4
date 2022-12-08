@@ -4,7 +4,11 @@ function loai_phong_all()
     $table = "room_types";
     $connect = connect();
     $sql = "
-        select * from {$table}
+        select
+            t.*,
+            bed_types.name as loai_giuong
+        from {$table} as t
+        join bed_types on bed_types.id = t.bed_type_id
     ";
     $result = $connect->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     close_connect($connect);
@@ -47,7 +51,8 @@ function loai_phong_find($id)
     }
 }
 
-function loai_phong_find_by_name($name) {
+function loai_phong_find_by_name($name)
+{
     $table = "room_types";
     $connect = connect();
     if (!empty($name)) {
@@ -103,7 +108,8 @@ function loai_phong_destroy($data)
     }
 }
 
-function service_room_type_find_by_room_type_id($id) {
+function service_room_type_find_by_room_type_id($id)
+{
     $table = "service_room_type";
     $connect = connect();
     if (!empty($id)) {

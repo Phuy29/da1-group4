@@ -2146,7 +2146,7 @@ const hasRoomForItem = state => {
         return true;
     }
 
-    // no more room for another file
+    // no more loai_phong for another file
     return false;
 };
 
@@ -4267,7 +4267,7 @@ const actions = (dispatch, query, state) => ({
             return;
         }
 
-        // test if there's still room in the list of files
+        // test if there's still loai_phong in the list of files
         if (!hasRoomForItem(state)) {
             // if multiple allowed, we can't replace
             // or if only a single item is allowed but we're not allowed to replace it we exit
@@ -8188,9 +8188,9 @@ const write$9 = ({ root, props, actions }) => {
             // the height of the panel minus the label height
             height -
             currentLabelHeight -
-            // the room we leave open between the end of the list and the panel bottom
+            // the loai_phong we leave open between the end of the list and the panel bottom
             (listMarginBottom - listItemMargin.bottom) -
-            // if we're full we need to leave some room between the top of the panel and the list
+            // if we're full we need to leave some loai_phong between the top of the panel and the list
             (atMaxCapacity ? listMarginTop : 0);
 
         if (listHeight.visual > listAvailableHeight) {
@@ -8212,9 +8212,9 @@ const write$9 = ({ root, props, actions }) => {
             // the height of the panel minus the label height
             bounds.fixedHeight -
             currentLabelHeight -
-            // the room we leave open between the end of the list and the panel bottom
+            // the loai_phong we leave open between the end of the list and the panel bottom
             (listMarginBottom - listItemMargin.bottom) -
-            // if we're full we need to leave some room between the top of the panel and the list
+            // if we're full we need to leave some loai_phong between the top of the panel and the list
             (atMaxCapacity ? listMarginTop : 0);
 
         // set list height
@@ -8241,9 +8241,9 @@ const write$9 = ({ root, props, actions }) => {
             // the height of the panel minus the label height
             panelHeight -
             currentLabelHeight -
-            // the room we leave open between the end of the list and the panel bottom
+            // the loai_phong we leave open between the end of the list and the panel bottom
             (listMarginBottom - listItemMargin.bottom) -
-            // if we're full we need to leave some room between the top of the panel and the list
+            // if we're full we need to leave some loai_phong between the top of the panel and the list
             (atMaxCapacity ? listMarginTop : 0);
 
         // set list height (if is overflowing)
@@ -8372,11 +8372,11 @@ const exceedsMaxFiles = (root, items) => {
     maxItems = allowMultiple ? maxItems : 1;
 
     if (!allowMultiple && allowReplace) {
-        // There is only one item, so there is room to replace or add an item
+        // There is only one item, so there is loai_phong to replace or add an item
         return false;
     }
 
-    // no more room?
+    // no more loai_phong?
     const hasMaxItems = isInt(maxItems);
     if (hasMaxItems && totalItems + totalBrowseItems > maxItems) {
         root.dispatch('DID_THROW_MAX_FILES', {

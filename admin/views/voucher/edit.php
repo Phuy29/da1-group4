@@ -57,7 +57,7 @@ if (!empty(session_get('errors'))) {
                                 />
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label for="first-name-vertical">
                                     Giảm giá (%)
@@ -78,12 +78,12 @@ if (!empty(session_get('errors'))) {
                                 <?php endif; ?>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label for="first-name-vertical">
                                     Loại muốn tạo
                                 </label>
-                                <select class="form-select" name="status" id="status">
+                                <select class="form-select" name="status" id="status" onchange="changeMax(this.value)">
                                     <?php foreach ($status as $each) { ?>
                                         <option value="<?= $each['id'] ?>"
                                             <?php if ($item['status'] == $each['id']): ?>
@@ -101,7 +101,27 @@ if (!empty(session_get('errors'))) {
                                 <?php endif; ?>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="first-name-vertical">
+                                    Có thể nhập
+                                </label>
+                                <input
+                                        type="text"
+                                        id="first-name-vertical"
+                                        class="form-control"
+                                        name="max"
+                                        placeholder="Giới hạn lượt nhập của voucher"
+                                        value="<?= $item['max'] ?? '' ?>"
+                                />
+                                <?php if (!empty($errors['max'])): ?>
+                                    <div class="error text-danger">
+                                        <span><?= $errors['max'][0] ?></span>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label for="first-name-vertical">
                                     Chiến dịch
@@ -130,7 +150,7 @@ if (!empty(session_get('errors'))) {
                                     class="btn btn-primary me-1 mb-1"
                                     name="voucher_edit"
                             >
-                                Sửa
+                                Cập nhật
                             </button>
                             <button
                                     type="reset"
@@ -147,3 +167,20 @@ if (!empty(session_get('errors'))) {
 </div>
 <script src="../public/admin/dist/assets/extensions/parsleyjs/parsley.min.js"></script>
 <script src="../public/admin/dist/assets/js/pages/parsley.js"></script>
+<script>
+    $(document).ready(function () {
+        const statusElement = $('select[name="status"]');
+        changeMax(statusElement.val());
+    })
+
+    function changeMax($status) {
+        const maxElement = $('input[name="max"]');
+        let disabled = true;
+        if ($status == 2) {
+            disabled = false;
+        } else {
+            maxElement.val('');
+        }
+        maxElement.attr('disabled', disabled);
+    }
+</script>
