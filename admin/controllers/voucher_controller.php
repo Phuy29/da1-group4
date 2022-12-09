@@ -2,7 +2,7 @@
 function voucher_index()
 {
     $ctr = "voucher";
-    $all = voucher_all();;
+    $all = voucher_all();
     $data = [
         'page_title' => 'Quản lý voucher',
         'ctr' => $ctr,
@@ -28,19 +28,14 @@ function voucher_store()
     $ctr = "voucher";
     if (isset($_POST['voucher_create'])) {
         $errors = [];
-        extract($_POST);
         foreach ($_POST as $key => $field) {
             if ($key !== 'voucher_create' && $field === '') {
                 $errors[$key][] = 'Vui lòng nhập trường này';
             }
         }
 
-        if ($quantity <= 0) {
-            $errors['quantity'][] = "Số voucher không được âm";
-        }
-
-        if ($discount <= 0 || $discount > 100) {
-            $errors['discount'][] = 'Giá trị giảm giá không hợp lệ';
+        if ($_POST['max'] <= 0) {
+            $errors['max'][] = 'Lượt nhập tối đa không được nhỏ hơn 1';
         }
 
         if (!empty($errors)) {
@@ -51,18 +46,25 @@ function voucher_store()
             ]);
             exit();
         }
-//        echo "<pre>";
-//        print_r($_POST);
-//        echo "</pre>";
-//        die();
-        $voucherArr = generate_voucher_array($quantity, $status, $campaign_id, $discount);
-        foreach ($voucherArr as $data) {
-//            echo "<pre>";
-//            print_r($data);
-//            echo "</pre>";
-//            die();
-            $id = voucher_insert($data);
-        }
+        $voucherAll = voucher_all();
+        $voucherArr = array_map(function ($voucher) {
+            return $voucher['code'];
+        }, $voucherAll);
+        do {
+            $voucher = create_voucher();
+        } while (in_array($voucher, $voucherArr));
+        $max = $_POST['max'] ?? null;
+        $discount = $_POST['discount'];
+        $status = $_POST['status'];
+        $campaign_id = $_POST['campaign_id'];
+        $data = [
+            'code' => $voucher,
+            'discount' => $discount,
+            'campaign_id' => $campaign_id,
+            'status' => $status,
+            'max' => $max,
+        ];
+        $id = voucher_insert($data);
 
         $status = [
             'type' => 'success',
@@ -97,17 +99,16 @@ function voucher_update()
     $ctr = 'voucher';
     if (isset($_POST['voucher_edit'])) {
         $errors = [];
-        extract($_POST);
+        $id = $_POST['id'];
+        $discount = $_POST['discount'];
+        $status = $_POST['status'];
+        $max = $_POST['max'] ?? null;
+        $campaign_id = $_POST['campaign_id'];
         foreach ($_POST as $key => $field) {
             if ($key !== 'voucher_edit' && $field === '') {
                 $errors[$key][] = 'Vui lòng nhập trường này';
             }
         }
-
-        if ($discount <= 0 || $discount > 100) {
-            $errors['discount'][] = 'Giá trị giảm giá không hợp lệ';
-        }
-
         if (!empty($errors)) {
             session_set('errors', $errors);
             redirect([
@@ -121,12 +122,82 @@ function voucher_update()
             'discount' => $discount,
             'status' => $status,
             'campaign_id' => $campaign_id,
+            'max' => $max,
             'id' => $id,
         ];
         voucher_cap_nhat($data);
         $status = [
             'type' => 'success',
             'title' => 'Cập nhật thành công',
+        ];
+        session_set('status', $status);
+        redirect([
+            'ctr' => $ctr,
+        ]);
+    }
+}
+
+function voucher_send()
+{
+    $ctr = 'voucher';
+    if (!empty($_GET['id'])) {
+        $id = $_GET['id'];
+        $voucher = voucher_find($id);
+        $bookingArr = don_dat_phong_all();
+        $bookingEmail = array_map(function ($booking) {
+            return $booking['email'];
+        }, $bookingArr);
+        $bookingEmail = array_unique($bookingEmail);
+        $data = [
+            'ctr' => $ctr,
+            'page_title' => 'Gửi ưu đãi',
+            'emails' => $bookingEmail,
+            'voucher' => $voucher,
+        ];
+        render('voucher.send', $data);
+    }
+}
+
+function voucher_process_send()
+{
+    $ctr = 'voucher';
+    if (isset($_POST['voucher_send_btn'])) {
+        $errors = [];
+        extract($_POST);
+        foreach ($_POST as $key => $field) {
+            if ($key !== 'voucher_send_btn' && $field === '') {
+                $errors[$key][] = 'Vui lòng nhập trường này';
+            }
+        }
+        if (!empty($errors)) {
+            session_set('errors', $errors);
+            redirect([
+                'ctr' => $ctr,
+                'act' => 'send'
+            ]);
+            exit();
+        }
+        $content .= '<h3>Mã: ' . $code . '</h3>';
+
+        if ($send_to === 'all') {
+            $bookingArr = don_dat_phong_all();
+            $bookingEmail = array_map(function ($booking) {
+                return $booking['email'];
+            }, $bookingArr);
+            $bookingEmail = array_unique($bookingEmail);
+            sendmailBCC($title, $content, $bookingEmail);
+        } else {
+            $data = [
+                'title' => $title,
+                'content' => $content,
+                'email' => $send_to,
+                'name' => ''
+            ];
+            sendmail($data);
+        }
+        $status = [
+            'type' => 'success',
+            'title' => 'Gửi mail thành công',
         ];
         session_set('status', $status);
         redirect([
@@ -143,7 +214,6 @@ function voucher_delete()
         $data = [
             'id' => $id,
         ];
-        dich_vu_loai_phong_destroy_by_room_service_id(['room_service_id' => $id]);
         voucher_destroy($data);
 
         $status = [

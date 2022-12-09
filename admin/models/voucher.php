@@ -21,8 +21,8 @@ function voucher_insert($data = [])
     $connect = connect();
     if (!empty($data)) {
         $sql = "
-            insert into {$table} (code, discount, campaign_id, status)
-            values (:code, :discount, :campaign_id, :status)
+            insert into {$table} (code, discount, campaign_id, status, max)
+            values (:code, :discount, :campaign_id, :status, :max)
         ";
         $stmt = $connect->prepare($sql);
         $stmt->execute($data);
@@ -38,8 +38,12 @@ function voucher_find($id)
     $connect = connect();
     if (!empty($id)) {
         $sql = "
-            select * from {$table}
-            where id = :id
+            select
+                t.*,
+                campaigns.name as 'campaign_name'
+            from {$table} as t
+            join campaigns on campaigns.id = t.campaign_id
+            where t.id = :id
             limit 1
         ";
         $stmt = $connect->prepare($sql, [PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY]);
@@ -60,7 +64,10 @@ function voucher_cap_nhat($data)
             set
                 discount = :discount,
                 status = :status,
-                campaign_id = :campaign_id
+                max = :max,
+                campaign_id = :campaign_id,
+                refresh_time = refresh_time + 1,
+                used = 0
             where id = :id
         ";
         $stmt = $connect->prepare($sql);

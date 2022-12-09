@@ -17,42 +17,34 @@ if (!empty(session_get('status'))) {
                     <tr>
                         <th>ID</th>
                         <th>Voucher</th>
-                        <th>Loại</th>
                         <th>Giảm giá (%)</th>
+                        <th>Loại</th>
+                        <th>Đã nhập</th>
+                        <th>Tối đa</th>
                         <th>Tên chiến dịch</th>
+                        <th>Đã làm mới</th>
                         <th>Action</th>
                     </tr>
-                    </thead>
-                    <tbody>
-                    <?php foreach ($list as $each) :
-                        $link = false;
-                        if ($each['status'] !== 0) {
-                            if ($each['status'] == 1) {
-                                $act = 'send_all';
-                            } else {
-                                $act = 'send_one&id=' . $each['id'];
-                            }
-                            $link = '?ctr=' . $ctr . '&act=' . $act;
-                        }
-                        ?>
+                </thead>
+                <tbody>
+                    <?php foreach ($list as $each) : ?>
                         <tr>
                             <td><?= $each['id'] ?></td>
                             <td><?= $each['code'] ?></td>
-                            <td><?= get_voucher_status($each['status']) ?></td>
                             <td><?= $each['discount'] ?></td>
+                            <td><?= get_voucher_status($each['status']) ?></td>
+                            <td><?= $each['used'] ?></td>
+                            <td><?= $each['max'] ?? 'Không có' ?></td>
                             <td><?= $each['campaign_name'] ?></td>
+                            <td><?= $each['refresh_time'] ?> lần</td>
                             <td>
                                 <a href="?ctr=<?= $ctr ?? 'home' ?>&act=edit&id=<?= $each['id'] ?>"
                                    class="btn icon btn-primary me-2">
                                     <i class="bi bi-pencil"></i>
                                 </a>
-                                <a onclick="confirmDel(`<?= $ctr ?? 'home' ?>`, `<?= $each['id'] ?>`)"
-                                   class="btn icon btn-danger me-2">
-                                    <i class="bi bi-x"></i>
-                                </a>
-                                <?php if (!empty($link)): ?>
-                                    <a href="<?= $link ?>"
-                                       class="btn icon btn-info me-2">
+                                <?php if (($each['status'] == 2 && $each['used'] != $each['max']) || (empty($each['max']) && $each['status'] == 1)): ?>
+                                    <a href="?ctr=<?= $ctr ?? 'home' ?>&act=send&id=<?= $each['id'] ?>"
+                                       class="btn icon btn-success me-2">
                                         <i class="bi bi-send"></i>
                                     </a>
                                 <?php endif; ?>

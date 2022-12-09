@@ -1,3 +1,8 @@
+<?php
+if (!empty(session_get('user_session'))) {
+    $user_session = session_get('user_session');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 

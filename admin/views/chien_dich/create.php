@@ -27,16 +27,16 @@ if (!empty(session_get('errors'))) {
                                         placeholder="Tên chiến dịch"
                                         data-parsley-required="true"
                                 />
-                                <?php if (!empty($errors['name']['required'])): ?>
+                                <?php if (!empty($errors['name'])): ?>
                                     <div class="error text-danger">
-                                        <span>Vui lòng nhập trường này</span>
+                                        <span><?= $errors['name'][0] ?></span>
                                     </div>
                                 <?php endif; ?>
                             </div>
 
                             <div class="form-group">
                                 <label for="first-name-vertical">
-                                    Ngay bat dau
+                                    Ngày bắt đầu
                                 </label>
                                   <input
                                         type="date"
@@ -46,16 +46,16 @@ if (!empty(session_get('errors'))) {
                                         placeholder="Tên chiến dịch"
                                         data-parsley-required="true"
                                 />
-                                <?php if (!empty($errors['name']['required'])): ?>
+                                <?php if (!empty($errors['started_at'])): ?>
                                     <div class="error text-danger">
-                                        <span>Vui lòng nhập trường này</span>
+                                        <span><?= $errors['started_at'][0] ?></span>
                                     </div>
                                 <?php endif; ?>
                             </div>
 
                             <div class="form-group">
                                 <label for="first-name-vertical">
-                                    Ngay bat dau
+                                    Ngày kết thúc
                                 </label>
                                   <input
                                         type="date"
@@ -65,9 +65,9 @@ if (!empty(session_get('errors'))) {
                                         placeholder="Tên chiến dịch"
                                         data-parsley-required="true"
                                 />
-                                <?php if (!empty($errors['name']['required'])): ?>
+                                <?php if (!empty($errors['finished_at'])): ?>
                                     <div class="error text-danger">
-                                        <span>Vui lòng nhập trường này</span>
+                                        <span><?= $errors['finished_at'][0] ?></span>
                                     </div>
                                 <?php endif; ?>
                             </div>

@@ -10,7 +10,8 @@ if (!empty(session_get('errors'))) {
     </div>
     <div class="card-content">
         <div class="card-body">
-            <form class="form form-vertical" action="?ctr=<?= $ctr ?? 'home' ?>&act=update" method="post" enctype="multipart/form-data" data-parsley-validate>
+            <form class="form form-vertical" action="?ctr=<?= $ctr ?? 'home' ?>&act=update" method="post"
+                  enctype="multipart/form-data" data-parsley-validate>
                 <div class="form-body">
                     <div class="row">
                         <div class="col-12">
@@ -44,45 +45,47 @@ if (!empty(session_get('errors'))) {
                                         value="<?= $item['name'] ?? '' ?>"
                                         data-parsley-required="true"
                                 />
-                                <?php if (!empty($errors['name']['required'])): ?>
+                                <?php if (!empty($errors['name'])): ?>
                                     <div class="error text-danger">
-                                        <span>Vui lòng nhập trường này</span>
+                                        <span><?= $errors['name'][0] ?></span>
                                     </div>
                                 <?php endif; ?>
                             </div>
                             <div class="form-group">
                                 <label for="first-name-vertical">
-                                    Ngay bat dau
+                                    Ngày bắt đầu
                                 </label>
-                                  <input
+                                <input
                                         type="date"
                                         id="first-name-vertical"
                                         class="form-control"
                                         name="started_at"
                                         placeholder="Tên chiến dịch"
                                         data-parsley-required="true"
+                                        value="<?= $item['started_at'] ?? '' ?>"
                                 />
-                                <?php if (!empty($errors['name']['required'])): ?>
+                                <?php if (!empty($errors['started_at'])): ?>
                                     <div class="error text-danger">
-                                        <span>Vui lòng nhập trường này</span>
+                                        <span><?= $errors['started_at'][0] ?></span>
                                     </div>
                                 <?php endif; ?>
                             </div>
                             <div class="form-group">
                                 <label for="first-name-vertical">
-                                    Ngay ket thuc
+                                    Ngày kết thúc
                                 </label>
-                                  <input
+                                <input
                                         type="date"
                                         id="first-name-vertical"
                                         class="form-control"
                                         name="finished_at"
                                         placeholder="Tên chiến dịch"
                                         data-parsley-required="true"
+                                        value="<?= $item['finished_at'] ?? '' ?>"
                                 />
-                                <?php if (!empty($errors['name']['required'])): ?>
+                                <?php if (!empty($errors['finished_at'])): ?>
                                     <div class="error text-danger">
-                                        <span>Vui lòng nhập trường này</span>
+                                        <span><?= $errors['finished_at'][0] ?></span>
                                     </div>
                                 <?php endif; ?>
                             </div>

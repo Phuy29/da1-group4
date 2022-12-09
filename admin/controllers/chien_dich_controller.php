@@ -20,18 +20,24 @@ function chien_dich_create()
     ];
     render('chien_dich.create', $data);
 }
+
 function chien_dich_store()
 {
     $ctr = "chien_dich";
     if (isset($_POST['chien_dich_create'])) {
-        echo '<pre>';
-        print_r($_POST);
+//        echo '<pre>';
+//        print_r($_POST);
         // die();
         $errors = [];
         foreach ($_POST as $key => $field) {
             if ($key !== 'chien_dich_create' && $field === '') {
-                $errors[$key]['required'] = 'Vui lòng nhập trường này';
+                $errors[$key][] = 'Vui lòng nhập trường này';
             }
+        }
+        $startTs = strtotime($_POST['started_at']);
+        $finishTs = strtotime($_POST['finished_at']);
+        if ($finishTs < $startTs) {
+            $errors['finished_at'][] = 'Ngày kết thúc không được nhỏ hơn ngày bắt đầu';
         }
         if (!empty($errors)) {
             session_set('errors', $errors);
@@ -45,10 +51,8 @@ function chien_dich_store()
         // var_dump($_POST['started_at']);
         // die();
         // die(strtotime($_POST['finished_at']));
-        $started_at = strtotime($_POST['started_at']);
-        $started_at = date('Y-m-d H:i:s', $started_at);
-        $finished_at = strtotime($_POST['finished_at']);
-        $finished_at = date('Y-m-d H:i:s', $finished_at);
+        $started_at = $_POST['started_at'];
+        $finished_at = $_POST['finished_at'];
         $data = [
             'name' => $name,
             'started_at' => $started_at,
@@ -91,19 +95,24 @@ function chien_dich_update()
         $name = $_POST['name'];
         foreach ($_POST as $key => $field) {
             if ($key !== 'chien_dich_edit' && $field === '') {
-                $errors[$key]['required'] = 'Vui lòng nhập trường này';
+                $errors[$key][] = 'Vui lòng nhập trường này';
             }
+        }
+        $startTs = strtotime($_POST['started_at']);
+        $finishTs = strtotime($_POST['finished_at']);
+        if ($finishTs < $startTs) {
+            $errors['finished_at'][] = 'Ngày kết thúc không được nhỏ hơn ngày bắt đầu';
         }
         if (!empty($errors)) {
             session_set('errors', $errors);
             redirect([
                 'ctr' => $ctr,
                 'act' => 'edit',
-                'id' => $field
+                'id' => $id
             ]);
             exit();
         }
-        
+
         $started_at = strtotime($_POST['started_at']);
         $started_at = date('Y-m-d H:i:s', $started_at);
         $finished_at = strtotime($_POST['finished_at']);

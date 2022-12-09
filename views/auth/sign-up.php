@@ -1,6 +1,4 @@
 <?php
-//var_dump(cookie_get('verifyCode'));
-//die();
 if (!empty(session_get('errors'))) {
     $errors = session_get('errors');
     session_delete('errors');
@@ -18,7 +16,7 @@ if (!empty(session_get('data'))) {
         <div class="col-12 py-5">
             <div id="auth-left" class="d-flex flex-column align-items-center p-0">
                 <h1 class="auth-title">Đăng ký</h1>
-                <p class="auth-subtitle mb-5">Đăng ký tài khoản để nhận những ưu đãi đặc biệt của ZCube.</p>
+                <p class="auth-subtitle mb-5">Đăng ký tài khoản để nhận những ưu đãi đặc biệt của RioRelax.</p>
 
                 <form action="?ctr=<?= $ctr ?? 'home' ?>&act=regist" id="form" method="post" class="w-50">
                     <div class="form-group position-relative has-icon-left mb-3">

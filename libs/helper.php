@@ -4,6 +4,11 @@ function get_date($time)
     return date("H:i d/m/Y", strtotime($time));
 }
 
+function get_date_2($time)
+{
+    return date("d/m/Y", strtotime($time));
+}
+
 function get_price($price)
 {
     return number_format((float)$price, 2, '.', '') . '$';
@@ -33,7 +38,8 @@ function deleteDirectory($dir)
     return rmdir($dir);
 }
 
-function get_voucher_status($status) {
+function get_voucher_status($status)
+{
     switch ($status) {
         case 0:
             return 'Đã hết hạn';
@@ -62,11 +68,15 @@ function to_slug($str)
 function redirect($data)
 {
     if (!empty($data)) {
-        $ctr = $data['ctr'] ?? 'dashboard';
-        $act = $data['act'] ?? 'index';
-        $path = "?ctr={$ctr}&act={$act}";
-        if (!empty($data['id'])) {
-            $path .= "&id={$data['id']}";
+        if (is_array($data)) {
+            $ctr = $data['ctr'] ?? 'dashboard';
+            $act = $data['act'] ?? 'index';
+            $path = "?ctr={$ctr}&act={$act}";
+            if (!empty($data['id'])) {
+                $path .= "&id={$data['id']}";
+            }
+        } else {
+            $path = $data;
         }
         header("location: $path");
     }
@@ -74,12 +84,51 @@ function redirect($data)
 
 function get_role($role)
 {
-    switch ($role) {
-        case 1:
-            return 'Nhân viên';
-        case 2:
-            return 'Quản lý';
-        default:
-            return 'Khách';
+    return match ($role) {
+        1 => 'Nhân viên',
+        2 => 'Quản lý',
+        default => 'Khách',
+    };
+}
+
+function get_date_range($checkin, $checkout)
+{
+    $checkin = str_replace('-', '/', date('d-m-Y', strtotime($checkin)));
+    $checkout = str_replace('-', '/', date('d-m-Y', strtotime($checkout)));
+    return $checkin . ' - ' . $checkout;
+}
+
+function limit_word($x, $length)
+{
+    if (mb_strlen($x, 'UTF-8') <= $length) {
+        return $x;
+    } else {
+        $y = mb_substr($x, 0, $length, 'UTF-8') . '...';
+        return $y;
     }
+}
+
+function get_day($start, $finish)
+{
+    return (strtotime($finish) - strtotime($start)) / (24 * 60 * 60);
+}
+
+function dd($data)
+{
+    if (is_array($data) || is_object($data)) {
+        echo '<pre>';
+        print_r($data);
+        echo '</pre>';
+    } else if (is_bool($data) || is_null($data)) {
+        var_dump($data);
+    } else {
+        echo $data;
+    }
+    die();
+}
+
+function get_booking_status($status)
+{
+    $booking_status = _BOOKING_STATUS;
+    return $booking_status[$status];
 }
