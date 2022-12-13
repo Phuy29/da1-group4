@@ -215,7 +215,7 @@ if (!empty(session_get('data'))) {
                         </div>
                         <div class="col-12 d-flex justify-content-end">
                             <button type="submit" class="btn btn-primary me-1 mb-1" name="loai_phong_edit">
-                                Thêm
+                                Cập nhật
                             </button>
                             <button type="reset" class="btn btn-light-secondary me-1 mb-1">
                                 Reset
