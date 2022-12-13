@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 07, 2022 at 09:32 PM
+-- Generation Time: Dec 13, 2022 at 10:28 AM
 -- Server version: 5.7.33
 -- PHP Version: 8.1.13
 
@@ -40,7 +40,8 @@ INSERT INTO `bed_types` (`id`, `name`) VALUES
 (1, 'Giường đơn'),
 (2, 'Giường cỡ lớn'),
 (3, 'Giường cỡ đại'),
-(4, 'Giường có bánh xe');
+(4, 'Giường có bánh xe'),
+(5, 'Giường đôi');
 
 -- --------------------------------------------------------
 
@@ -141,7 +142,8 @@ CREATE TABLE `campaigns` (
 
 INSERT INTO `campaigns` (`id`, `name`, `started_at`, `finished_at`) VALUES
 (1, 'Giáng sinh', '2022-12-23', '2022-12-26'),
-(3, 'Tết Âm lịch', '2023-01-21', '2023-01-25');
+(3, 'Tết Âm lịch', '2023-01-21', '2023-01-25'),
+(4, 'Tết Dương lịch', '2022-12-27', '2023-01-02');
 
 -- --------------------------------------------------------
 
@@ -178,7 +180,20 @@ INSERT INTO `room_galleries` (`id`, `image`, `room_type_id`) VALUES
 (37, 'public/uploads/loai-phong/18/2.jpg', 18),
 (38, 'public/uploads/loai-phong/18/3.jpg', 18),
 (39, 'public/uploads/loai-phong/18/4.jpg', 18),
-(40, 'public/uploads/loai-phong/18/5.jpg', 18);
+(40, 'public/uploads/loai-phong/18/5.jpg', 18),
+(41, 'public/uploads/loai-phong/19/0.jpg', 19),
+(42, 'public/uploads/loai-phong/19/1.jpg', 19),
+(43, 'public/uploads/loai-phong/19/2.jpg', 19),
+(44, 'public/uploads/loai-phong/19/3.jpg', 19),
+(45, 'public/uploads/loai-phong/19/4.jpg', 19),
+(46, 'public/uploads/loai-phong/20/0.jpg', 20),
+(47, 'public/uploads/loai-phong/20/1.jpg', 20),
+(48, 'public/uploads/loai-phong/20/2.jpg', 20),
+(49, 'public/uploads/loai-phong/20/3.jpg', 20),
+(50, 'public/uploads/loai-phong/21/0.jpg', 21),
+(51, 'public/uploads/loai-phong/21/1.jpg', 21),
+(52, 'public/uploads/loai-phong/21/2.jpg', 21),
+(53, 'public/uploads/loai-phong/21/3.jpg', 21);
 
 -- --------------------------------------------------------
 
@@ -201,7 +216,10 @@ INSERT INTO `room_services` (`id`, `name`) VALUES
 (3, 'Máy lạnh'),
 (4, 'Máy sưởi'),
 (7, 'Giặt là'),
-(8, 'Điện thoại bàn');
+(8, 'Điện thoại bàn'),
+(9, 'Minibar'),
+(10, 'Lò vi sóng'),
+(11, 'Đồ vệ sinh cá nhân miễn phí');
 
 -- --------------------------------------------------------
 
@@ -226,7 +244,10 @@ CREATE TABLE `room_types` (
 INSERT INTO `room_types` (`id`, `name`, `adults`, `size`, `bed_type_id`, `description`, `price`) VALUES
 (16, 'King Deluxe Studio', 3, 35.00, 2, 'King Deluxe Studio rộng 35 m2 được thiết kế với một giường lớn tiện dụng, một ban công gần gũi với thiên nhiên tạo nên nét đẹp phù hợp với khách hàng cần thời gian thư giãn, nghỉ ngơi sao khi về thừ nơi làm việc.\r\n\r\nHân hạnh được mang đến cho bạn những phú giây tuyệt vời tại đây.', 27.00),
 (17, 'King Deluxe 1 Bedroom', 2, 45.00, 3, 'King Deluxe Studio rộng 45 m2 được thiết kế với 1 phòng ngủ riêng có một giường lớn tiện dụng, một phòng khách cso sofa và bếp phù hợp với khách hàng cần có khoảng không gian tiện nghi như ở nhà.\r\n\r\nHân hạnh được mang đến cho bạn những phú giây tuyệt vời tại đây.', 36.00),
-(18, 'ROOFTOP 5BR', 10, 330.00, 3, 'IREST ROOFTOP 5BR WITH TERRACE là loại phòng nằm ở những tầng cao nhất của tòa nhà hiện đại giữa lòng Hà Nội với tổng diện tích 330 m2.\r\nGồm 1 phòng khách lớn đầy sang trọng cùng TV thông minh có kích thước lên tới 65\", 5 phòng ngủ mang lại cảm giác ấm cúng, 4 phòng tắm, 1 bếp lớn đầy đủ tiện nghi và 1 sân ngoài rộng hướng ra thành phố thủ đô, loại phòng được thiết kế đơn giản, ấm cúng nhưng cực kỳ hiện đại này chắc chắn sẽ đem đến cho khách hàng những trải nghiệm tốt nhất!', 110.00);
+(18, 'ROOFTOP 5BR', 10, 330.00, 3, 'IREST ROOFTOP 5BR WITH TERRACE là loại phòng nằm ở những tầng cao nhất của tòa nhà hiện đại giữa lòng Hà Nội với tổng diện tích 330 m2.\r\nGồm 1 phòng khách lớn đầy sang trọng cùng TV thông minh có kích thước lên tới 65\", 5 phòng ngủ mang lại cảm giác ấm cúng, 4 phòng tắm, 1 bếp lớn đầy đủ tiện nghi và 1 sân ngoài rộng hướng ra thành phố thủ đô, loại phòng được thiết kế đơn giản, ấm cúng nhưng cực kỳ hiện đại này chắc chắn sẽ đem đến cho khách hàng những trải nghiệm tốt nhất!', 110.00),
+(19, 'Deluxe', 2, 25.00, 2, 'Phòng có TV màn hình LCD, máy pha cà phê, 2 chai nước được cung cấp hàng ngày, phòng không có tầm nhìn.', 20.00),
+(20, 'Superior Giường Đôi', 2, 20.00, 5, 'Phòng có TV màn hình LCD, máy pha cà phê, 2 chai nước được cung cấp hàng ngày, phòng không có tầm nhìn.', 15.00),
+(21, 'CLASSIC CITY VIEW', 4, 43.00, 2, 'Thả mình thư giãn trong không gian rộng rãi 43m2 của phòng khách đặt tại khu biệt thự xây nổi trên mặt hồ. Phong cách sang trọng của cả căn phòng được tô điểm bởi các bức tường kem trang nhã, nội thất gỗ tông trầm hoài cổ cùng những đường nét trang trí tinh tế mang đậm nét văn hóa truyền thống ViệtNam. Quý khách có thể chọn loại phòng có 1 giường lớn hoặc 2 giường đôi, cùng các nội thất đi kèm khác như bàn làm việc lớn, tivi truyền hình cáp, đường truyền internet tốc độ cao, cùng bồn tắm đứng và bồn tắm ngồi riêng biệt. ', 34.00);
 
 -- --------------------------------------------------------
 
@@ -262,7 +283,40 @@ INSERT INTO `service_room_type` (`id`, `room_service_id`, `room_type_id`) VALUES
 (60, 3, 18),
 (61, 4, 18),
 (62, 7, 18),
-(63, 8, 18);
+(63, 8, 18),
+(64, 9, 18),
+(65, 9, 17),
+(66, 9, 16),
+(67, 10, 18),
+(68, 11, 18),
+(69, 10, 17),
+(70, 11, 17),
+(71, 10, 16),
+(72, 11, 16),
+(73, 1, 19),
+(74, 2, 19),
+(75, 3, 19),
+(76, 4, 19),
+(77, 7, 19),
+(78, 8, 19),
+(79, 9, 19),
+(80, 11, 19),
+(81, 1, 20),
+(82, 2, 20),
+(83, 3, 20),
+(84, 4, 20),
+(85, 8, 20),
+(86, 9, 20),
+(87, 11, 20),
+(88, 1, 21),
+(89, 2, 21),
+(90, 3, 21),
+(91, 4, 21),
+(92, 7, 21),
+(93, 8, 21),
+(94, 9, 21),
+(95, 10, 21),
+(96, 11, 21);
 
 -- --------------------------------------------------------
 
@@ -285,7 +339,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `fullname`, `phone_number`, `email`, `password`, `role`) VALUES
 (1, 'Nguyễn Quang Vinh', '0968739042', 'quangvinks@gmail.com', 'quangvinh26', 0),
-(2, 'Nguyễn Văn Quang', '0965212247', 'nguyenvanquanglc2003@gmail.com', 'quangngu', 0),
+(2, 'Nguyễn Văn Quang', '0965212247', 'nguyenvanquanglc2003@gmail.com', '123abc', 2),
 (3, 'Nguyễn Duy Quang Vinh', '0123456789', 'nguyenduyquangvinh2906@gmail.com', 'quangvinh', 2),
 (4, 'Nguyễn Linh Anh', '0123456789', 'nguyenduyquangvinh@gmail.com', 'linhanh26', 1);
 
@@ -312,7 +366,7 @@ CREATE TABLE `vouchers` (
 
 INSERT INTO `vouchers` (`id`, `code`, `discount`, `campaign_id`, `refresh_time`, `used`, `max`, `status`) VALUES
 (1, '7JYK9VZFZH', 40.00, 1, 0, 2, 15, 2),
-(2, '5IX8IDZNQL', 40.00, 1, 0, 0, NULL, 0),
+(2, '5IX8IDZNQL', 10.00, 1, 1, 0, NULL, 1),
 (3, '8GXJOONFY9', 20.00, 1, 0, 0, NULL, 1),
 (4, 'NH8QXE2N2I', 15.00, 3, 5, 1, 1, 2),
 (5, 'R9HHDEX5GW', 10.00, 3, 0, 0, 20, 2);
@@ -424,7 +478,7 @@ ALTER TABLE `voucher_used`
 -- AUTO_INCREMENT for table `bed_types`
 --
 ALTER TABLE `bed_types`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `booking`
@@ -448,25 +502,25 @@ ALTER TABLE `campaigns`
 -- AUTO_INCREMENT for table `room_galleries`
 --
 ALTER TABLE `room_galleries`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `room_services`
 --
 ALTER TABLE `room_services`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `room_types`
 --
 ALTER TABLE `room_types`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `service_room_type`
 --
 ALTER TABLE `service_room_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 
 --
 -- AUTO_INCREMENT for table `users`

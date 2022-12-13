@@ -34,7 +34,11 @@ function voucher_store()
             }
         }
 
-        if ($_POST['max'] <= 0) {
+        if ($_POST['discount'] <= 0 || $_POST['discount'] > 100) {
+            $errors['discount'][] = '% giảm giá không hợp lệ';
+        }
+
+        if (!empty($_POST['max']) && $_POST['max'] <= 0) {
             $errors['max'][] = 'Lượt nhập tối đa không được nhỏ hơn 1';
         }
 
@@ -109,6 +113,15 @@ function voucher_update()
                 $errors[$key][] = 'Vui lòng nhập trường này';
             }
         }
+
+        if ($_POST['discount'] <= 0 || $_POST['discount'] > 100) {
+            $errors['discount'][] = '% giảm giá không hợp lệ';
+        }
+
+        if (!empty($max) && $max <= 0) {
+            $errors['max'][] = 'Lượt nhập tối đa không được nhỏ hơn 1';
+        }
+
         if (!empty($errors)) {
             session_set('errors', $errors);
             redirect([
@@ -144,14 +157,19 @@ function voucher_send()
         $id = $_GET['id'];
         $voucher = voucher_find($id);
         $bookingArr = don_dat_phong_all();
+        $users = nguoi_dung_all();
+        $userEmail = array_map(function ($user) {
+            return $user['email'];
+        }, $users);
         $bookingEmail = array_map(function ($booking) {
             return $booking['email'];
         }, $bookingArr);
-        $bookingEmail = array_unique($bookingEmail);
+        $emails = array_merge($bookingEmail, $userEmail);
+        $emails = array_unique($emails);
         $data = [
             'ctr' => $ctr,
             'page_title' => 'Gửi ưu đãi',
-            'emails' => $bookingEmail,
+            'emails' => $emails,
             'voucher' => $voucher,
         ];
         render('voucher.send', $data);

@@ -201,7 +201,7 @@ if (!empty(session_get('inputCheck'))) {
                                 <a href="?ctr=loai_phong&act=detail&id=<?= $room_type['id'] ?>"><?= limit_word($room_type['name'], 21) ?></a>
                             </h4>
                             <p>
-                                <?= limit_word($room_type['description'], 200) ?>
+                                <?= limit_word($room_type['description'], 100) ?>
                             </p>
                             <div class="icon">
                                 <ul>
