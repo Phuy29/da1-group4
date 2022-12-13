@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 13, 2022 at 09:55 AM
+-- Generation Time: Dec 13, 2022 at 10:28 AM
 -- Server version: 5.7.33
 -- PHP Version: 8.1.13
 
@@ -339,7 +339,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `fullname`, `phone_number`, `email`, `password`, `role`) VALUES
 (1, 'Nguyễn Quang Vinh', '0968739042', 'quangvinks@gmail.com', 'quangvinh26', 0),
-(2, 'Nguyễn Văn Quang', '0965212247', 'nguyenvanquanglc2003@gmail.com', '123abc', 0),
+(2, 'Nguyễn Văn Quang', '0965212247', 'nguyenvanquanglc2003@gmail.com', '123abc', 2),
 (3, 'Nguyễn Duy Quang Vinh', '0123456789', 'nguyenduyquangvinh2906@gmail.com', 'quangvinh', 2),
 (4, 'Nguyễn Linh Anh', '0123456789', 'nguyenduyquangvinh@gmail.com', 'linhanh26', 1);
 
